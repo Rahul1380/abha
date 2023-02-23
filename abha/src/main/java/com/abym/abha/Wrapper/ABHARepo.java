@@ -56,7 +56,7 @@ public class ABHARepo implements ABHA {
     @Override
     public void launchABHA(Context context, ABHAListener listener) {
         abhaListener = listener;
-        context.startActivity(new Intent(context, CreateABHAActivity.class));
+        context.startActivity(new Intent(context, CreateABHAActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public boolean verifyUser(Context context, String clientId, String clientSecret) {
