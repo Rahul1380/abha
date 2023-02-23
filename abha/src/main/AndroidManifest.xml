@@ -7,7 +7,7 @@
     <application
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/myTheme">
+        android:theme="@style/customTheme">
         <activity
             android:name=".Ui.MobileNoVerifyActivity"
             android:exported="false"

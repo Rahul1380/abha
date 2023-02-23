@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="myTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/theme_color</item>
@@ -12,22 +12,22 @@
         <item name="colorControlActivated">@color/theme_color</item>
         <item name="android:windowBackground">@color/window_background</item>
         <item name="colorControlHighlight">@color/light_gray</item>
-        <item name="actionBarStyle">@style/MyTheme.ActionBarStyle</item>
-        <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
-        <item name="actionOverflowButtonStyle">@style/actionOverflowButtonStyle</item>
+        <item name="actionBarStyle">@style/CustomTheme.ActionBarStyle</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowToggle</item>
+        <item name="actionOverflowButtonStyle">@style/actionOverflowButton</item>
     </style>
-    <style name="MyDrawerArrowToggle" parent="Widget.AppCompat.DrawerArrowToggle">
+    <style name="DrawerArrowToggle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/white</item>
     </style>
-    <style name="MyTheme.ActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>
+    <style name="CustomTheme.ActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="titleTextStyle">@style/CustomTheme.ActionBar.TitleTextStyle</item>
         <item name="android:background">#8B0000</item>
     </style>
-    <style name="actionOverflowButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+    <style name="actionOverflowButton" parent="@style/Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">@color/white</item>
     </style>
 
-    <style name="MyTheme.ActionBar.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="CustomTheme.ActionBar.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/gray72</item>
         <item name="android:textSize">12sp</item>
     </style>
