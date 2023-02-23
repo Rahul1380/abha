@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:onClick="close"
+                android:src="@drawable/backico" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ivClose"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/llMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_lightblue"
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+                                android:id="@+id/tvCreateLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/product_sans_medium"
+                                android:gravity="center"
+                                android:text="@string/createyour"
+                                android:textColor="@color/black"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/product_sans_medium"
+                                android:gravity="center"
+                                android:text="@string/healthid"
+                                android:textColor="@color/blulabel"
+                                android:textSize="24sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvsubTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/product_sans_medium"
+                            android:gravity="center"
+                            android:text="@string/enteradhardigit"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="30dp">
+
+                            <EditText
+                                android:id="@+id/etADHARNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:background="@drawable/custom_et_bg"
+                                android:fontFamily="@font/product_sans_regular"
+                                android:hint="@string/enteradharno"
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/darkgray"
+                                android:textSize="14sp" />
+
+                            <RelativeLayout
+                                android:id="@+id/rlClear"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                android:visibility="gone">
+
+                                <ImageView
+                                    android:id="@+id/ivClear"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/closeico"
+                                    android:translationZ="90dp" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:paddingRight="10dp">
+
+                            <CheckBox
+                                android:id="@+id/chkConsent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/product_sans_regular"
+                                android:gravity="left"
+                                android:text="@string/agreetothe"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/product_sans_regular"
+                                android:gravity="left"
+                                android:onClick="terms"
+                                android:text="@string/terms"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/product_sans_regular"
+                                android:gravity="left"
+                                android:text="@string/and"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/product_sans_regular"
+                                android:gravity="left"
+                                android:onClick="policy"
+                                android:text="@string/pepolicy"
+                                android:textColor="@color/black"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvCreateHealthId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/custom_blue_btn1"
+                            android:fontFamily="@font/product_sans_medium"
+                            android:gravity="center"
+                            android:onClick="createABHA"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="15dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/createhealth"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <LinearLayout
+                            android:id="@+id/llRetrieveABHA"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/product_sans_medium"
+                                android:gravity="center"
+                                android:text="@string/alreadyhaveabha"
+                                android:textColor="@color/theme_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvRetrieveCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:background="@drawable/bg_blue_border2"
+                                android:fontFamily="@font/product_sans_medium"
+                                android:gravity="center"
+                                android:onClick="retrieveABHA"
+                                android:paddingLeft="15dp"
+                                android:paddingRight="15dp"
+                                android:text="Retrieve ABHA"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/custom_progress"
+            layout="@layout/custom_progress" />
+
+    </RelativeLayout>
+</layout>

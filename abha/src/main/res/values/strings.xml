@@ -1,0 +1,42 @@
+<resources>
+    <string name="createyour">Create your</string>
+    <string name="retrieveyour">Retrieve your</string>
+    <string name="otpreceived">Enter OTP received through ABDM to verify your number</string>
+    <string name="healthid">ABHA</string>
+    <string name="approvedby">APPROVED BY NHA</string>
+    <string name="entermobileno2">Enter Mobile Number</string>
+    <string name="createhealth">Create ABHA</string>
+    <string name="enterdigit">Enter your 10 digit number for ABDM\nauthentication</string>
+    <string name="agreetothe">I agree to the</string>
+    <string name="pepolicy"><u>Privacy Policy</u></string>
+    <string name="and">and</string>
+    <string name="agreetocosent">Please agree to the terms and conditions</string>
+    <string name="alreadyhaveabha">Already have ABHA?</string>
+    <string name="enteradhardigit">Enter your Aadhaar number for ABDM\nauthentication</string>
+    <string name="enteradharno">Enter Aadhaar Number</string>
+    <string name="enteradharnoo">Enter Aadhaar Number.</string>
+    <string name="enteradharnoodigit">Enter valid Aadhaar Number.</string>
+    <string name="createABHA">Link your ABHA</string>
+    <string name="resendotp">Resend OTP</string>
+    <string name="otponmobile">Enter OTP received on the mobile number linked with aadhaar card.</string>
+    <string name="mobilenocard">Enter mobile number you want to linked with this ABHA account.</string>
+    <string name="mobileno">Mobile Number</string>
+    <string name="verifyadhar">Verify Aadhaar Number</string>
+    <string name="linkmobileno">Link Mobile Number</string>
+    <string name="hdidcard">ABHA Card</string>
+    <string name="terms"><u>Terms &amp; Conditions</u></string>
+    <string name="abhade">ABHA (Ayushman Bharat Health Account)</string>
+    <string name="feat1">Unique &amp; Trustable Identity</string>
+    <string name="feat2">Unified Benefits</string>
+    <string name="feat3">Hassle-free Access</string>
+    <string name="feat4">Easy PHR Sign Up</string>
+    <string name="linkurabha">Link your ABHA</string>
+    <string name="featde1">Establish unique identity across different healthcare providers within the healthcare ecosystem</string>
+    <string name="featde2">Link all healthcare benefits ranging from public health programmes to insurance schemes to your unique ABHA number</string>
+    <string name="featde3">Avoid long lines for registration in healthcare facilities across the country</string>
+    <string name="featde4">Seamless sign up for PHR (Personal Health Records) applications such as ABDM ABHA application for Health data sharing</string>
+    <string name="urdighealthlocker">Your Digital Health Locker</string>
+    <string name="quicklyview">Quickly View your Health Records</string>
+    <string name="verify">Verify ABHA</string>
+
+</resources>
