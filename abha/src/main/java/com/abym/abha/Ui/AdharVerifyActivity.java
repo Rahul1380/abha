@@ -24,4 +24,8 @@ public class AdharVerifyActivity extends AppCompatActivity {
 
     public void verifyABHA(View view) {
     }
+    public void close(View view) {
+        finish();
+    }
+
 }

@@ -12,5 +12,8 @@
     <color name="grey_bg">#e9eaee</color>
     <color name="darkgray">#545454</color>
     <color name="theme_color">#1976d2</color>
+    <color name="window_background">#FFF5F5F5</color>
+    <color name="light_gray">#9a9a9a</color>
+    <color name="gray72">#b8b8b8</color>
 
 </resources>

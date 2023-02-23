@@ -3,7 +3,11 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <application>
+
+    <application
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/myTheme">
         <activity
             android:name=".Ui.MobileNoVerifyActivity"
             android:exported="false"
@@ -30,8 +34,8 @@
         </activity>
         <activity
             android:name=".Ui.CreateABHAActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

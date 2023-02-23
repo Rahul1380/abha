@@ -31,4 +31,8 @@ public class CreateABHAActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void close(View view) {
+        finish();
+    }
+
 }
