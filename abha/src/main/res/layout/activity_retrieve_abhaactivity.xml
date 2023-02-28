@@ -5,7 +5,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -55,7 +56,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:fontFamily="@font/product_sans_medium"
                                 android:gravity="left"
-                                android:text="@string/verifymobileno"
+                                android:text="@string/retriveabha"
                                 android:textColor="@color/black"
                                 android:textSize="18sp" />
 
@@ -79,8 +80,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/tvMobileNo"
@@ -99,6 +99,7 @@
                                 android:layout_height="20dp"
                                 android:layout_marginLeft="15dp"
                                 android:onClick="changeMobile"
+                                android:visibility="gone"
                                 android:src="@drawable/editico" />
                         </LinearLayout>
 
@@ -201,11 +202,10 @@
                                 android:gravity="left"
                                 android:text="Resend OTP in 00:00"
                                 android:textColor="@color/blulabel"
-                                android:textSize="12sp"
-                                android:visibility="gone" />
-
+                                android:textSize="12sp" />
                             <TextView
                                 android:id="@+id/tvResendOTP"
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
@@ -215,8 +215,7 @@
                                 android:onClick="resendOTP"
                                 android:text="@string/resendotp"
                                 android:textColor="@color/blulabel"
-                                android:textSize="12sp"
-                                android:visibility="gone" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
 
@@ -232,10 +231,12 @@
                             android:gravity="center"
                             android:onClick="verify"
                             android:padding="10dp"
-                            android:text="@string/verify1"
+                            android:text="@string/verify"
                             android:textColor="@color/white"
                             android:textSize="12sp" />
+
                     </LinearLayout>
+
                 </RelativeLayout>
             </ScrollView>
         </RelativeLayout>

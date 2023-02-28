@@ -15,5 +15,6 @@
     <color name="window_background">#FFF5F5F5</color>
     <color name="light_gray">#9a9a9a</color>
     <color name="gray72">#b8b8b8</color>
+    <color name="gray47">#787878</color>
 
 </resources>

@@ -38,5 +38,23 @@
     <string name="urdighealthlocker">Your Digital Health Locker</string>
     <string name="quicklyview">Quickly View your Health Records</string>
     <string name="verify">Verify ABHA</string>
-
+    <string name="submit">Submit</string>
+    <string name="verifymobileno">Verify Mobile Number</string>
+    <string name="verify1">Verify Mobile</string>
+    <string name="retreiveurhealthid">Retrieve your ABHA</string>
+    <string name="verificationmethod">Select the verification method to retrieve your ABHA</string>
+    <string name="retreiveviaadhar">Retrieve via Aadhaar</string>
+    <string name="retreiveviaabhano">Retrieve via ABHA no.</string>
+    <string name="retreiveviaqr">Retrieve via QR</string>
+    <string name="retreiveviamobile">Retrieve via Mobile</string>
+    <string name="shareverifydetails">Please share the below details to verify your ABHA</string>
+    <string name="retriveabha">Retrieve ABHA</string>
+    <string name="abhanumber">Enter ABHA number</string>
+    <string name="urhealthid">Your ABHA Card</string>
+    <string name="createac">Create Ayushman Bharat Health Account</string>
+    <string name="abha">ABHA</string>
+    <string name="watisabha">What is ABHA?</string>
+    <string name="abhano">ABHA (Ayushman Bharat Health Account) Address is a unique identifier (self declared username) that enables you to share and access your health records digitally.</string>
+    <string name="shareabha">Scan ABHA</string>
+    <string name="scanqrtoshare">Scan QR to retrieve your ABHA Profile</string>
 </resources>

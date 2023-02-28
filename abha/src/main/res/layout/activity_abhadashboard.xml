@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:onClick="close"
+                android:src="@drawable/backico" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ivClose"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/product_sans_medium"
+                        android:gravity="center"
+                        android:text="@string/createac"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:gravity="center"
+                        android:text="@string/abha"
+                        android:textColor="@color/theme_color"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/tvCreateABHA"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="40dp"
+                        android:background="@drawable/custom_blue_border"
+                        android:fontFamily="@font/product_sans_medium"
+                        android:gravity="center"
+                        android:onClick="createABHA"
+                        android:text="@string/createhealth"
+                        android:textColor="@color/theme_color"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvRetrieveABHA"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="40dp"
+                        android:background="@drawable/custom_blue_border"
+                        android:fontFamily="@font/product_sans_medium"
+                        android:gravity="center"
+                        android:onClick="retrieveABHA"
+                        android:text="@string/retriveabha"
+                        android:textColor="@color/theme_color"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/tvABHADesc"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/product_sans_medium"
+                        android:gravity="center"
+                        android:text="@string/watisabha"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvABHADesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/product_sans_regular"
+                        android:gravity="center"
+                        android:justificationMode="inter_word"
+                        android:text="@string/abhano"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </ScrollView>
+
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/custom_progress"
+            layout="@layout/custom_progress" />
+
+    </RelativeLayout>
+</layout>
