@@ -87,12 +87,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
+   <!--     <activity
             android:name=".Ui.CaptureActivity"
             android:screenOrientation="sensorPortrait"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden" />-->
     </application>
 
 </manifest>
