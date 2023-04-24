@@ -49,8 +49,8 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_gravity="center"
                 android:layout_height="150dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/image_9" />
 
@@ -91,31 +91,35 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp">
 
-                <com.mukeshsolanki.OtpView
+                <com.chaos.view.PinView
                     android:id="@+id/otp_view"
+                    style="@style/PinWidget.PinView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/pt_sans_bold"
+                    android:layout_gravity="center"
+                    android:cursorVisible="true"
+                    android:gravity="center"
                     android:inputType="number"
                     android:itemBackground="@drawable/et_outline_bg"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="14sp"
-                    app:OtpHideLineWhenFilled="true"
-                    app:OtpItemCount="4"
-                    app:OtpItemHeight="55dp"
-                    app:OtpItemSpacing="18dp"
-                    app:OtpItemWidth="74dp" />
+                    android:textColor="@color/black"
+                    app:hideLineWhenFilled="false"
+                    app:itemCount="4"
+                    app:itemHeight="55dp"
+                    app:itemRadius="10dp"
+                    app:itemSpacing="20dp"
+                    app:itemWidth="75dp"
+                    app:lineColor="#b5b5b5" />
 
                 <TextView
                     android:id="@+id/tvTimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/otp_view"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/pt_sans_bold"
                     android:text="@string/_00_45"
