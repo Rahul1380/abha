@@ -20,7 +20,8 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_create_abha_address);
-        getActionBar().hide();   init();
+        getActionBar().hide();
+        init();
     }
 
     private void init() {

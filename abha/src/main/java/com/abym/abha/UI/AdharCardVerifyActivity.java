@@ -18,7 +18,8 @@ public class AdharCardVerifyActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_adhar_card_verification);
-        getActionBar().hide();   init();
+        getActionBar().hide();
+        init();
     }
 
     private void init(){
