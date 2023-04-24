@@ -1,12 +1,7 @@
 package com.abym.abha.Network;
 
-import com.abym.abha.Models.Auth.AuthRequest;
-import com.abym.abha.Models.Auth.AuthResponse;
 import com.google.gson.JsonElement;
-
-
 import java.util.ArrayList;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -19,8 +14,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
-    @POST("gateway/v0.5/sessions")
-    Call<AuthResponse> verifyUser(@Body AuthRequest authRequest);
 
    /* @POST("gateway/v0.5/sessions")
     Call<SessionResponse> getSession(@Body SessionRequest sessionRequest);
