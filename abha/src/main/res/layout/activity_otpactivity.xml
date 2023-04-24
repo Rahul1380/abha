@@ -3,9 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -102,11 +99,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:cursorVisible="true"
+                    android:focusable="true"
                     android:gravity="center"
                     android:inputType="number"
                     android:itemBackground="@drawable/et_outline_bg"
                     android:textColor="@color/black"
-                    app:hideLineWhenFilled="false"
                     app:itemCount="4"
                     app:itemHeight="55dp"
                     app:itemRadius="10dp"
