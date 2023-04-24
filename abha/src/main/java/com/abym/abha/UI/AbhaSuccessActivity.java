@@ -17,7 +17,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_abha_successfull);
-
+        getActionBar().hide();
         init();
     }
 
