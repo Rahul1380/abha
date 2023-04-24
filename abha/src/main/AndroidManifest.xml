@@ -6,35 +6,41 @@
 
     <application
         android:largeHeap="true"
-        android:supportsRtl="true"
-        android:theme="@style/customTheme">
+        android:supportsRtl="true">
         <activity
             android:name=".UI.CreateABHAActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/customTheme"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UI.AbhaSuccessActivity"
             android:exported="false"
+            android:theme="@style/customTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".UI.AdharCardVerifyActivity"
             android:exported="false"
+            android:theme="@style/customTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".UI.ConfirmAdharDetailsActivity"
             android:exported="false"
+            android:theme="@style/customTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".UI.CreateAbhaAddressActivity"
             android:exported="false"
+            android:theme="@style/customTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".UI.MobileNumberActivity"
             android:exported="false"
+            android:theme="@style/customTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".UI.OTPActivity"
             android:exported="false"
+            android:theme="@style/customTheme"
             android:screenOrientation="portrait" />
     </application>
 

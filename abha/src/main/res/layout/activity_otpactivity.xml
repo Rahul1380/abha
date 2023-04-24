@@ -107,7 +107,7 @@
                     app:OtpHideLineWhenFilled="true"
                     app:OtpItemCount="4"
                     app:OtpItemHeight="55dp"
-                    app:OtpItemSpacing="22dp"
+                    app:OtpItemSpacing="18dp"
                     app:OtpItemWidth="74dp" />
 
                 <TextView

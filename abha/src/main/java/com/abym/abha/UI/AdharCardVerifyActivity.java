@@ -95,6 +95,12 @@ public class AdharCardVerifyActivity extends AppCompatActivity{
                 }
             }
         });
+        dataBinding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public boolean checkEmpty(){

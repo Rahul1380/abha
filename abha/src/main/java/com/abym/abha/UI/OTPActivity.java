@@ -30,7 +30,7 @@ public class OTPActivity extends AppCompatActivity {
         dataBinding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
         dataBinding.btnVerify.setOnClickListener(new View.OnClickListener() {
