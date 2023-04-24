@@ -23,7 +23,7 @@
     <string name="adhar_verification">Aadhaar Card verification</string>
     <string name="confirm_adhaar_details">Confirm your Aadhaar Details</string>
     <string name="proceed">PROCEED</string>
-    <string name="verify_adhar_textline">Verify your Aadhaar details as these details will be updated to your LPL Patient Profile</string>
+    <string name="verify_adhar_textline">Verify your Aadhaar details as these details will \nbe updated to your LPL Patient Profile</string>
     <string name="adhar_no">xxxx xxxx xxxx</string>
     <string name="create_abha_address">Create your ABHA Address</string>
     <string name="abdm">\@abdm</string>

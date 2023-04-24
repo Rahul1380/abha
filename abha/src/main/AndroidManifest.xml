@@ -9,90 +9,33 @@
         android:supportsRtl="true"
         android:theme="@style/customTheme">
         <activity
-            android:name=".Ui.QRScanActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".UI.CreateABHAActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
-            android:name=".Ui.ABHADashboardActivity"
+            android:name=".UI.AbhaSuccessActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Ui.HealthCardActivity"
+            android:name=".UI.AdharCardVerifyActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Ui.VerifyABHAActivity"
+            android:name=".UI.ConfirmAdharDetailsActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Ui.RetrieveABHAActivity"
+            android:name=".UI.CreateAbhaAddressActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Ui.RetrieveActivity"
+            android:name=".UI.MobileNumberActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Ui.MobileNoVerifyActivity"
+            android:name=".UI.OTPActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Ui.MobileNoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Ui.AdharVerifyActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Ui.CreateABHAActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Ui.CaptureActivity"
-            android:screenOrientation="sensorPortrait"
-            android:stateNotNeeded="true"
-            android:theme="@style/zxing_CaptureTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

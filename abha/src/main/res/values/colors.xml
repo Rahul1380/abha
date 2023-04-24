@@ -11,7 +11,12 @@
     <color name="blulabel">#4369b0</color>
     <color name="grey_bg">#e9eaee</color>
     <color name="darkgray">#545454</color>
-    <color name="theme_color">#1976d2</color>
+    <color name="theme_color">#ffb301</color>
+    <color name="theme_btn_color">#0054a5</color>
+    <color name="text_blue">#0054A5</color>
+    <color name="dark_blue">#183b56</color>
+    <color name="dark_blu">#004899</color>
+    <color name="blu_grey">#5a7184</color>
     <color name="window_background">#FFF5F5F5</color>
     <color name="light_gray">#9a9a9a</color>
     <color name="gray72">#b8b8b8</color>

@@ -3,8 +3,6 @@ package com.abym.abha.Wrapper;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Constants.AppConstants;
@@ -12,8 +10,7 @@ import com.abym.abha.Models.Auth.AuthRequest;
 import com.abym.abha.Models.Auth.AuthResponse;
 import com.abym.abha.Network.ApiClient;
 import com.abym.abha.Network.ApiInterface;
-import com.abym.abha.Ui.ABHADashboardActivity;
-import com.abym.abha.Ui.CreateABHAActivity;
+import com.abym.abha.UI.CreateABHAActivity;
 import com.abym.abha.Util.NetworkUtil;
 import com.abym.abha.Util.PreferenceUtil;
 import retrofit2.Call;
@@ -57,7 +54,7 @@ public class ABHARepo implements ABHA {
     @Override
     public void launchABHA(Context context, ABHAListener listener) {
         abhaListener = listener;
-        context.startActivity(new Intent(context, ABHADashboardActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        context.startActivity(new Intent(context, CreateABHAActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public boolean verifyUser(Context context, String clientId, String clientSecret) {
