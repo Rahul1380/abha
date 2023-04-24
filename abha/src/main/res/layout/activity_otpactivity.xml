@@ -107,8 +107,9 @@
                     app:itemCount="4"
                     app:itemHeight="55dp"
                     app:itemRadius="10dp"
-                    app:itemSpacing="20dp"
-                    app:itemWidth="75dp"
+                    app:itemSpacing="15dp"
+                    app:itemWidth="70dp"
+                    app:cursorColor="@color/theme_color"
                     app:lineColor="#b5b5b5" />
 
                 <TextView
