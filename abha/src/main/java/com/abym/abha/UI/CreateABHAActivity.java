@@ -17,7 +17,6 @@ public class CreateABHAActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_create_abhaactivity);
-        getActionBar().hide();
         init();
     }
 

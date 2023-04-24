@@ -24,7 +24,6 @@ public class MobileNumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_enter_no);
-        getActionBar().hide();
         init();
     }
 

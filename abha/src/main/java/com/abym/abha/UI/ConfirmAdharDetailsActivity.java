@@ -17,7 +17,6 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_confirm_adhar);
-        getActionBar().hide();
         init();
     }
     private void init(){
