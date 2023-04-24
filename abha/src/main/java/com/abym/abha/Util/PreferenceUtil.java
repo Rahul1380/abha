@@ -13,6 +13,7 @@ public class PreferenceUtil {
     public static final String PREFERENCE_NAME1 = "abhaSdk";
 
     public static String HEALTH_ACCESSTOKEN = "haccesstoken";
+    public static String ENVIRONMENT = "environment";
     public static String PUBLICKEY = "pkey";
     public static String HEALTH_REFRESHTOKEN = "hrefreshtoken";
     public static String TXNID = "txnId";
@@ -26,6 +27,8 @@ public class PreferenceUtil {
     public static String LANGUAGE = "language";
     public static String AUTHTOKEN = "authtoken";
     public static String IS_VERIFIED = "is_verified";
+    public static String CLIENT_ID = "clientId";
+    public static String CLIENT_SECRET = "clientSecret";
 
     private static SharedPreferences getSharedPrefs(Context context) {
         return context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);

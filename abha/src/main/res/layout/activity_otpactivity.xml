@@ -109,6 +109,7 @@
                     app:itemRadius="10dp"
                     app:itemSpacing="15dp"
                     app:itemWidth="70dp"
+                    app:lineWidth="1dp"
                     app:cursorColor="@color/theme_color"
                     app:lineColor="#b5b5b5" />
 

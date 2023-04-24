@@ -10,7 +10,9 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 
+import com.abym.abha.Constants.AppConstants;
 import com.abym.abha.R;
+import com.abym.abha.Util.PreferenceUtil;
 import com.abym.abha.databinding.ActivityCreateAbhaAddressBinding;
 
 public class CreateAbhaAddressActivity extends AppCompatActivity {
@@ -24,6 +26,12 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
     }
 
     private void init() {
+        if(PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
+            dataBinding.tvPostfix.setText("@sbx");
+        }else if (PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
+            dataBinding.tvPostfix.setText("@abdm");
+        }
+
         dataBinding.etAbhaAddress.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

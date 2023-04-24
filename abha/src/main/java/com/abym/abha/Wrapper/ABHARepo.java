@@ -34,6 +34,10 @@ public class ABHARepo implements ABHA {
         AppConstants.CLIENT_SECRET = clientSecret;
         if ((mode.equalsIgnoreCase(AppConstants.UAT) || mode.equalsIgnoreCase(AppConstants.PROD)) &&
                 !TextUtils.isEmpty(clientId) && !TextUtils.isEmpty(clientSecret)) {
+            PreferenceUtil.clearpref(context);
+            PreferenceUtil.setStringPrefs(context,PreferenceUtil.ENVIRONMENT,mode);
+            PreferenceUtil.setStringPrefs(context,PreferenceUtil.CLIENT_ID,clientId);
+            PreferenceUtil.setStringPrefs(context,PreferenceUtil.CLIENT_SECRET,clientSecret);
             return true;
         }
         return false;
@@ -44,5 +48,4 @@ public class ABHARepo implements ABHA {
         abhaListener = listener;
         context.startActivity(new Intent(context, CreateABHAActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
-
 }
