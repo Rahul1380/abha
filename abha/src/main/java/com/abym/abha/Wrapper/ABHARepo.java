@@ -2,6 +2,7 @@ package com.abym.abha.Wrapper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.abym.abha.Constants.ApiConstants;
@@ -13,6 +14,7 @@ import com.abym.abha.Network.ApiInterface;
 import com.abym.abha.UI.CreateABHAActivity;
 import com.abym.abha.Util.NetworkUtil;
 import com.abym.abha.Util.PreferenceUtil;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,13 +44,11 @@ public class ABHARepo implements ABHA {
         PreferenceUtil.clearpref(context);
         AppConstants.CLIENT_ID = clientId;
         AppConstants.CLIENT_SECRET = clientSecret;
-        if (AppConstants.APPMODE == AppConstants.UAT) {
+        if ((mode.equalsIgnoreCase(AppConstants.UAT) || mode.equalsIgnoreCase(AppConstants.PROD)) &&
+                !TextUtils.isEmpty(clientId) && !TextUtils.isEmpty(clientSecret)) {
             return true;
-        } else if (AppConstants.APPMODE == AppConstants.PROD && verifyUser(context, clientId, clientSecret)) {
-            return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override
