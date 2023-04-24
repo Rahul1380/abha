@@ -3,21 +3,9 @@ package com.abym.abha.Wrapper;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
-
-import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Constants.AppConstants;
-import com.abym.abha.Models.Auth.AuthRequest;
-import com.abym.abha.Models.Auth.AuthResponse;
-import com.abym.abha.Network.ApiClient;
-import com.abym.abha.Network.ApiInterface;
 import com.abym.abha.UI.CreateABHAActivity;
-import com.abym.abha.Util.NetworkUtil;
 import com.abym.abha.Util.PreferenceUtil;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ABHARepo implements ABHA {
 
@@ -57,42 +45,4 @@ public class ABHARepo implements ABHA {
         context.startActivity(new Intent(context, CreateABHAActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
-    public boolean verifyUser(Context context, String clientId, String clientSecret) {
-        final boolean[] isVerified = {false};
-        if (NetworkUtil.checkInternetConnection(context)) {
-            ApiInterface apiService = null;
-            try {
-                apiService = ApiClient.getApiClient1(context, ApiConstants.BASEURL_AUTH).create(ApiInterface.class);
-                AuthRequest authUser = new AuthRequest();
-                authUser.setClientId(clientId);
-                authUser.setClientSecret(clientSecret);
-
-                Call<AuthResponse> call = apiService.verifyUser(authUser);
-                call.enqueue(new Callback<AuthResponse>() {
-                    @Override
-                    public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                        if (response.isSuccessful()) {
-                            if (response.code() == 200) {
-                                isVerified[0] = true;
-                                PreferenceUtil.setBooleanPrefs(context, PreferenceUtil.IS_VERIFIED, true);
-                            }
-                        } else {
-                            isVerified[0] = false;
-                            PreferenceUtil.setBooleanPrefs(context, PreferenceUtil.IS_VERIFIED, false);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<AuthResponse> call, Throwable t) {
-                        Log.d("Throwable", t.toString());
-                        isVerified[0] = false;
-                        PreferenceUtil.setBooleanPrefs(context, PreferenceUtil.IS_VERIFIED, false);
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return isVerified[0];
-    }
 }
