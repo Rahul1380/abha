@@ -37,4 +37,6 @@
     <string name="verify">VERIFY</string>
     <string name="vashnaviloke_abdm">Vashnaviloke@abdm</string>
     <string name="enter_address">Enter your Address</string>
+    <string name="linkmobileno">Link Mobile Number</string>
+    <string name="verifyotp">OTP Verification</string>
 </resources>
