@@ -39,4 +39,6 @@
     <string name="enter_address">Enter your Address</string>
     <string name="linkmobileno">Link Mobile Number</string>
     <string name="verifyotp">OTP Verification</string>
+    <string name="unknownerror">Unknown error occurred.</string>
+    <string name="otpresent">OTP resent.</string>
 </resources>

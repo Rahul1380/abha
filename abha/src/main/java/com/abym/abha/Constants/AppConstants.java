@@ -8,4 +8,6 @@ public class AppConstants {
     public static String APPMODE = "mode";
     public static String PROD = "production";
     public static String UAT = "development";
+    public static String MOBILENO = "mobileNo";
+    public static String TYPE = "type";
 }

@@ -1,8 +1,10 @@
 package com.abym.abha.Wrapper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+
 import com.abym.abha.Constants.AppConstants;
 import com.abym.abha.UI.CreateABHAActivity;
 import com.abym.abha.Util.PreferenceUtil;
@@ -10,7 +12,8 @@ import com.abym.abha.Util.PreferenceUtil;
 public class ABHARepo implements ABHA {
 
     private static ABHARepo INSTANCE = null;
-    private static ABHAListener abhaListener = null;
+    public static ABHAListener abhaListener = null;
+    public static Activity screen1, screen2, screen3, screen4, screen5, screen6, screen7;
 
     public static ABHARepo getInstance(Context context) {
         if (INSTANCE == null) {
@@ -35,9 +38,9 @@ public class ABHARepo implements ABHA {
         if ((mode.equalsIgnoreCase(AppConstants.UAT) || mode.equalsIgnoreCase(AppConstants.PROD)) &&
                 !TextUtils.isEmpty(clientId) && !TextUtils.isEmpty(clientSecret)) {
             PreferenceUtil.clearpref(context);
-            PreferenceUtil.setStringPrefs(context,PreferenceUtil.ENVIRONMENT,mode);
-            PreferenceUtil.setStringPrefs(context,PreferenceUtil.CLIENT_ID,clientId);
-            PreferenceUtil.setStringPrefs(context,PreferenceUtil.CLIENT_SECRET,clientSecret);
+            PreferenceUtil.setStringPrefs(context, PreferenceUtil.ENVIRONMENT, mode);
+            PreferenceUtil.setStringPrefs(context, PreferenceUtil.CLIENT_ID, clientId);
+            PreferenceUtil.setStringPrefs(context, PreferenceUtil.CLIENT_SECRET, clientSecret);
             return true;
         }
         return false;
@@ -47,5 +50,29 @@ public class ABHARepo implements ABHA {
     public void launchABHA(Context context, ABHAListener listener) {
         abhaListener = listener;
         context.startActivity(new Intent(context, CreateABHAActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
+    public static void closeABHA() {
+        if (screen1 != null) {
+            screen1.finish();
+        }
+        if (screen2 != null) {
+            screen2.finish();
+        }
+        if (screen3 != null) {
+            screen3.finish();
+        }
+        if (screen4 != null) {
+            screen4.finish();
+        }
+        if (screen5 != null) {
+            screen5.finish();
+        }
+        if (screen6 != null) {
+            screen6.finish();
+        }
+        if (screen7 != null) {
+            screen7.finish();
+        }
     }
 }
