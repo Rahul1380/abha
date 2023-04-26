@@ -20,7 +20,6 @@ public interface ApiInterface {
     @POST("{url}")
     Call<ResponseBody> abhaRequest(@Path("url") String url, @Body RequestBody requestBody);
 
-    @Headers({ "Content-Type: application/json; charset=utf-8"})
     @GET("{url}")
     Call<ResponseBody> abhaGetRequest(@Path("url") String url);
 

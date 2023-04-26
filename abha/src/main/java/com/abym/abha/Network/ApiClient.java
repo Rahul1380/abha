@@ -101,7 +101,8 @@ public class ApiClient {
     public static class HeaderIntercepter implements Interceptor {
 
         public Response intercept(Interceptor.Chain chain) throws IOException {
-            return chain.proceed(chain.request().newBuilder().addHeader("Authorization","Bearer f73dcbfea9650601071e40fdadbbc257").build());
+            return chain.proceed(chain.request().newBuilder().addHeader("Content-Type", "application/json")
+                    .addHeader("Accept", "application/json").addHeader("Authorization","Bearer f73dcbfea9650601071e40fdadbbc257").build());
         }
     }
 }
