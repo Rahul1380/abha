@@ -27,10 +27,8 @@ public class UtilityABHA {
             ApiInterface apiService = null;
             try {
                 apiService = ApiClient.getApiClient(context, ApiConstants.BASEURL).create(ApiInterface.class);
-
                 RequestBody body =
                         RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
-
                 Call<ResponseBody> call = apiService.abhaRequest(apiUrl, body);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override

@@ -16,6 +16,7 @@ import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.R;
 import com.abym.abha.Util.PreferenceUtil;
 import com.abym.abha.Util.StringCodec;
+import com.abym.abha.Util.ToastUtil;
 import com.abym.abha.Util.UtilityABHA;
 import com.abym.abha.Wrapper.ABHARepo;
 import com.abym.abha.databinding.ActivityAdharCardVerificationBinding;
@@ -139,10 +140,14 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
                 public void onSuccess(String response) {
                     try {
                         JSONObject jsonObject1 = new JSONObject(response);
-                        JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_ACCESSTOKEN, jsonObject2.optString("accessToken"));
-                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_REFRESHTOKEN, jsonObject2.optString("refreshToken"));
-                        getCertificate();
+                        if(jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_ACCESSTOKEN, jsonObject2.optString("accessToken"));
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_REFRESHTOKEN, jsonObject2.optString("refreshToken"));
+                            getCertificate();
+                        }else {
+                            ToastUtil.showToastLong(getApplicationContext(),jsonObject1.optString("message"));
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -169,8 +174,12 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
                 public void onSuccess(String response) {
                     try {
                         JSONObject jsonObject1 = new JSONObject(response);
-                        String key = jsonObject1.optString("result");
-                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.PUBLICKEY, key);
+                        if(jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            String key = jsonObject1.optString("result");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.PUBLICKEY, key);
+                        }else {
+                            ToastUtil.showToastLong(getApplicationContext(),jsonObject1.optString("message"));
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -201,14 +210,16 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
                 public void onSuccess(String response) {
                     try {
                         JSONObject jsonObject1 = new JSONObject(response);
-                        JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                        String txnId = jsonObject2.optString("txnId");
-                        String mobileNumber = jsonObject2.optString("mobileNumber");
-                        PreferenceUtil.setStringPrefs(getApplicationContext(),PreferenceUtil.TXNID,txnId);
-                        Intent intent = new Intent(getApplicationContext(), OTPActivity.class);
-                        intent.putExtra(AppConstants.MOBILENO,mobileNumber);
-                        intent.putExtra(AppConstants.TYPE,"1");
-                        startActivity(intent);
+                        if(jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            String txnId = jsonObject2.optString("txnId");
+                            String mobileNumber = jsonObject2.optString("mobileNumber");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
+                            Intent intent = new Intent(getApplicationContext(), OTPActivity.class);
+                            intent.putExtra(AppConstants.MOBILENO, mobileNumber);
+                            intent.putExtra(AppConstants.TYPE, "1");
+                            startActivity(intent);
+                        }else   ToastUtil.showToastLong(getApplicationContext(),jsonObject1.optString("message"));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

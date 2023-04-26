@@ -163,15 +163,18 @@ public class OTPActivity extends AppCompatActivity {
                 public void onSuccess(String response) {
                     try {
                         JSONObject jsonObject1 = new JSONObject(response);
-                        JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                        String txnId = jsonObject2.optString("txnId");
-                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
-                        Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
-                        startActivity(intent);
-                        finish();
-                        if (ABHARepo.screen2 != null) {
-                            ABHARepo.screen2.finish();
-                        }
+                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            String txnId = jsonObject2.optString("txnId");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
+                            Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
+                            startActivity(intent);
+                            finish();
+                            if (ABHARepo.screen2 != null) {
+                                ABHARepo.screen2.finish();
+                            }
+                        } else
+                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -199,10 +202,13 @@ public class OTPActivity extends AppCompatActivity {
                 public void onSuccess(String response) {
                     try {
                         JSONObject jsonObject1 = new JSONObject(response);
-                        JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                        String txnId = jsonObject2.optString("txnId");
-                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
-                        ToastUtil.showToastLong(getApplicationContext(), getString(R.string.otpresent));
+                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            String txnId = jsonObject2.optString("txnId");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
+                            ToastUtil.showToastLong(getApplicationContext(), getString(R.string.otpresent));
+                        } else
+                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
