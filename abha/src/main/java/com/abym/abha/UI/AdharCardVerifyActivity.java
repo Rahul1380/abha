@@ -136,7 +136,7 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
                     dataBinding.etAdhar2.getText().toString().trim() +
                     dataBinding.etAdhar3.getText().toString().trim();
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("adharNo", aadharNo);
+            jsonObject.put("aadharNo", aadharNo);
 
             UtilityABHA.abhaAPICall(this, dataBinding.rlProgress, jsonObject, ApiConstants.GENERATE_AADHAR_OTP, new ResponseListener() {
                 @Override
