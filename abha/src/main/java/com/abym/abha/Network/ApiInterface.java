@@ -17,10 +17,10 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @POST("{url}")
-    Call<ResponseBody> abhaRequest(@Path(value="url", encoded=true) String url, @Body RequestBody requestBody);
+    Call<ResponseBody> abhaRequest(@Path("url") String url, @Body RequestBody requestBody);
 
     @GET("{url}")
-    Call<ResponseBody> abhaGetRequest(@Path(value="url", encoded=true) String url);
+    Call<ResponseBody> abhaGetRequest(@Path("url") String url);
 
 
 }
