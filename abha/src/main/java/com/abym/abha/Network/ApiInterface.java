@@ -22,5 +22,4 @@ public interface ApiInterface {
     @GET("{url}")
     Call<ResponseBody> abhaGetRequest(@Path("url") String url);
 
-
 }

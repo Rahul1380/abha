@@ -4,13 +4,16 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+
 import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.Network.ApiClient;
 import com.abym.abha.Network.ApiInterface;
 import com.abym.abha.R;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -28,7 +31,7 @@ public class UtilityABHA {
             try {
                 apiService = ApiClient.getApiClient(context, ApiConstants.BASEURL).create(ApiInterface.class);
                 RequestBody body =
-                        RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+                        RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
                 Call<ResponseBody> call = apiService.abhaRequest(apiUrl, body);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -203,7 +206,7 @@ public class UtilityABHA {
 
     public static void abhaAPIGetCallwithSessionAuth(Context context, RelativeLayout progressBar, String apiUrl, ResponseListener listener) {
         if (NetworkUtil.checkInternetConnection(context)) {
-            if (progressBar != null)  progressBar.setVisibility(View.VISIBLE);
+            if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
             ApiInterface apiService = null;
             try {
                 apiService = ApiClient.getApiClient1(context, ApiConstants.BASEURL).create(ApiInterface.class);
@@ -212,7 +215,7 @@ public class UtilityABHA {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (progressBar != null)    progressBar.setVisibility(View.GONE);
+                        if (progressBar != null) progressBar.setVisibility(View.GONE);
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 try {
@@ -250,7 +253,7 @@ public class UtilityABHA {
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.d("Throwable", t.toString());
                         listener.onFailure(t.toString());
-                        if (progressBar != null)    progressBar.setVisibility(View.GONE);
+                        if (progressBar != null) progressBar.setVisibility(View.GONE);
                     }
                 });
             } catch (Exception e) {
@@ -262,7 +265,7 @@ public class UtilityABHA {
 
     public static void abhaAPIGetCallwithUserAuth(Context context, RelativeLayout progressBar, JSONObject jsonObject, String apiUrl, ResponseListener listener) {
         if (NetworkUtil.checkInternetConnection(context)) {
-            if (progressBar != null)   progressBar.setVisibility(View.VISIBLE);
+            if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
             ApiInterface apiService = null;
             try {
                 apiService = ApiClient.getApiClient2(context, ApiConstants.BASEURL).create(ApiInterface.class);
@@ -309,7 +312,7 @@ public class UtilityABHA {
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.d("Throwable", t.toString());
                         listener.onFailure(t.toString());
-                        if (progressBar != null)    progressBar.setVisibility(View.GONE);
+                        if (progressBar != null) progressBar.setVisibility(View.GONE);
                     }
                 });
             } catch (Exception e) {
