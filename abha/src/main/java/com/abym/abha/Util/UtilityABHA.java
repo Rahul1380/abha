@@ -90,7 +90,7 @@ public class UtilityABHA {
                 apiService = ApiClient.getApiClient1(context, ApiConstants.BASEURL).create(ApiInterface.class);
 
                 RequestBody body =
-                        RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+                        RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
 
                 Call<ResponseBody> call = apiService.abhaRequest(apiUrl, body);
                 call.enqueue(new Callback<ResponseBody>() {
@@ -268,7 +268,7 @@ public class UtilityABHA {
                 apiService = ApiClient.getApiClient2(context, ApiConstants.BASEURL).create(ApiInterface.class);
 
                 RequestBody body =
-                        RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+                        RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
 
                 Call<ResponseBody> call = apiService.abhaRequest(apiUrl, body);
                 call.enqueue(new Callback<ResponseBody>() {
