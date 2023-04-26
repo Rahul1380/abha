@@ -17,7 +17,6 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @Headers({ "Content-Type: application/json; charset=utf-8"})
     @POST("{url}")
     Call<ResponseBody> abhaRequest(@Path("url") String url, @Body RequestBody requestBody);
 
