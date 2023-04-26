@@ -1,11 +1,14 @@
 package com.abym.abha.Network;
 
 import android.content.Context;
+
 import com.abym.abha.Util.PreferenceUtil;
+
 import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.HashMap;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -88,7 +91,7 @@ public class ApiClient {
     public static class HeaderIntercepter1 implements Interceptor {
         public Response intercept(Interceptor.Chain chain) throws IOException {
             Request.Builder addHeader = chain.request().newBuilder().addHeader("content", "application/json").addHeader("Accept-Language", "en-US");
-            return chain.proceed(addHeader.addHeader("Authorization","Bearer "+ PreferenceUtil.getStringPrefs(ApiClient.context, PreferenceUtil.HEALTH_ACCESSTOKEN, "")).build());
+            return chain.proceed(addHeader.addHeader("Authorization", "Bearer " + PreferenceUtil.getStringPrefs(ApiClient.context, PreferenceUtil.HEALTH_ACCESSTOKEN, "")).build());
         }
     }
 
@@ -102,7 +105,8 @@ public class ApiClient {
 
         public Response intercept(Interceptor.Chain chain) throws IOException {
             return chain.proceed(chain.request().newBuilder().addHeader("Content-Type", "application/json")
-                    .addHeader("Accept", "application/json").addHeader("Authorization","Bearer f73dcbfea9650601071e40fdadbbc257").build());
+                    .addHeader("Accept", "application/json").
+                    addHeader("token", "60f291aa46ea447060f291aa46ea447019d83ba30be508e419d83ba30be508e4").build());
         }
     }
 }

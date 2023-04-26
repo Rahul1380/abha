@@ -37,7 +37,6 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
     }
 
     private void init() {
-        getSession();
         dataBinding.etAdhar1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -130,71 +129,6 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
         return false;
     }
 
-    public void getSession() {
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("refreshToken", "");
-
-            UtilityABHA.abhaAPICall(this, dataBinding.rlProgress, jsonObject, ApiConstants.SESSIONS_API, new ResponseListener() {
-                @Override
-                public void onSuccess(String response) {
-                    try {
-                        JSONObject jsonObject1 = new JSONObject(response);
-                        if(jsonObject1.optString("status").equalsIgnoreCase("true")) {
-                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_ACCESSTOKEN, jsonObject2.optString("accessToken"));
-                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_REFRESHTOKEN, jsonObject2.optString("refreshToken"));
-                            getCertificate();
-                        }else {
-                            ToastUtil.showToastLong(getApplicationContext(),jsonObject1.optString("message"));
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(String response) {
-                    ABHARepo.abhaListener.onFailure(response);
-                    ABHARepo.closeABHA();
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void getCertificate() {
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("token", PreferenceUtil.getStringPrefs(this, PreferenceUtil.HEALTH_ACCESSTOKEN, ""));
-
-            UtilityABHA.abhaAPICall(this, null, jsonObject, ApiConstants.ENCRYPT_CERTIFICATE, new ResponseListener() {
-                @Override
-                public void onSuccess(String response) {
-                    try {
-                        JSONObject jsonObject1 = new JSONObject(response);
-                        if(jsonObject1.optString("status").equalsIgnoreCase("true")) {
-                            String key = jsonObject1.optString("result");
-                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.PUBLICKEY, key);
-                        }else {
-                            ToastUtil.showToastLong(getApplicationContext(),jsonObject1.optString("message"));
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(String response) {
-                    ABHARepo.abhaListener.onFailure(response);
-                    ABHARepo.closeABHA();
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void generateAdharOTP() {
         try {
@@ -202,15 +136,14 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
                     dataBinding.etAdhar2.getText().toString().trim() +
                     dataBinding.etAdhar3.getText().toString().trim();
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("adharNo", StringCodec.getEncryptedString(aadharNo, PreferenceUtil.getStringPrefs(this, PreferenceUtil.PUBLICKEY, "")));
-            jsonObject.put("token", PreferenceUtil.getStringPrefs(this, PreferenceUtil.HEALTH_ACCESSTOKEN, ""));
+            jsonObject.put("adharNo", aadharNo);
 
             UtilityABHA.abhaAPICall(this, dataBinding.rlProgress, jsonObject, ApiConstants.GENERATE_AADHAR_OTP, new ResponseListener() {
                 @Override
                 public void onSuccess(String response) {
                     try {
                         JSONObject jsonObject1 = new JSONObject(response);
-                        if(jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
                             JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
                             String txnId = jsonObject2.optString("txnId");
                             String mobileNumber = jsonObject2.optString("mobileNumber");
@@ -219,7 +152,8 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
                             intent.putExtra(AppConstants.MOBILENO, mobileNumber);
                             intent.putExtra(AppConstants.TYPE, "1");
                             startActivity(intent);
-                        }else   ToastUtil.showToastLong(getApplicationContext(),jsonObject1.optString("message"));
+                        } else
+                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

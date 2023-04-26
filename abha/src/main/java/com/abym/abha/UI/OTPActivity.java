@@ -61,7 +61,6 @@ public class OTPActivity extends AppCompatActivity {
 
     private void init() {
         OTPTimer();
-        getSession();
         String type = getIntent().getStringExtra("type");
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,41 +121,13 @@ public class OTPActivity extends AppCompatActivity {
         return false;
     }
 
-    public void getSession() {
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("refreshToken", "");
-
-            UtilityABHA.abhaAPICall(this, binding.rlProgress, jsonObject, ApiConstants.SESSIONS_API, new ResponseListener() {
-                @Override
-                public void onSuccess(String response) {
-                    try {
-                        JSONObject jsonObject1 = new JSONObject(response);
-                        JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_ACCESSTOKEN, jsonObject2.optString("accessToken"));
-                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.HEALTH_REFRESHTOKEN, jsonObject2.optString("refreshToken"));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(String response) {
-                    ABHARepo.abhaListener.onFailure(response);
-                    ABHARepo.closeABHA();
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void verifyAdharOTP() {
         try {
             String otp = binding.otpView.getText().toString();
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("otp", StringCodec.getEncryptedString(otp, PreferenceUtil.getStringPrefs(this, PreferenceUtil.PUBLICKEY, "")));
-            jsonObject.put("token", PreferenceUtil.getStringPrefs(this, PreferenceUtil.HEALTH_ACCESSTOKEN, ""));
+            jsonObject.put("otp", otp);
+            jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this,PreferenceUtil.TXNID,""));
 
             UtilityABHA.abhaAPICall(this, binding.rlProgress, jsonObject, ApiConstants.VERIFY_AADHAR_OTP, new ResponseListener() {
                 @Override
@@ -166,12 +137,16 @@ public class OTPActivity extends AppCompatActivity {
                         if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
                             JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
                             String txnId = jsonObject2.optString("txnId");
-                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
-                            Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
-                            startActivity(intent);
-                            finish();
-                            if (ABHARepo.screen2 != null) {
-                                ABHARepo.screen2.finish();
+                            if(jsonObject2.optString("new").equalsIgnoreCase("true")) {
+                                PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
+                                Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
+                                startActivity(intent);
+                                finish();
+                                if (ABHARepo.screen2 != null) {
+                                    ABHARepo.screen2.finish();
+                                }
+                            }else {
+
                             }
                         } else
                             ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
