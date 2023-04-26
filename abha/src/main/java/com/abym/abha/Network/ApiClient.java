@@ -104,7 +104,7 @@ public class ApiClient {
             Request request = chain.request();
 
             Request tokenRequest = request.newBuilder()
-                    .addHeader("content", "application/json")
+                    .addHeader("Content-Type", "application/json")
                     .addHeader("Authorization", "Bearer f73dcbfea9650601071e40fdadbbc257")
                     .build();
             return chain
