@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 
 import com.abym.abha.Constants.ApiConstants;
@@ -72,8 +73,10 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                         JSONObject jsonObject1 = new JSONObject(response);
                         if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
                             String image = jsonObject1.optString("result");
+                            byte[] responseBody = Base64.decode(image, Base64.DEFAULT);
+
                             finalJSON.put("cardImage",image);
-                            byte[] responseBody = image.getBytes();
+                          //  byte[] responseBody = image.getBytes();
                             Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
                             dataBinding.ivCard.setImageBitmap(bitmap);
                         } else

@@ -21,7 +21,7 @@ public interface ApiConstants {
     public String VERIFY_MOBILE_OTP = "verify-mobile-otp";
     public String CHECK_PHR_AVAIL = "check-healthid";
     public String CREATE_ABHA = "create-new-abha";
-    public String ABHA_CARD = "account-get-card";
+    public String ABHA_CARD = "account/png/card";
     public String ABHA_QR = "account-get-qr";
     public String ABHA_PROFILE = "profile";
 }
