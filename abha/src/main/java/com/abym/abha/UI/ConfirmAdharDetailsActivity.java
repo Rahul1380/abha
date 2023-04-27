@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 
 import com.abym.abha.Constants.ApiConstants;
@@ -52,6 +55,15 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
                 }
                 if (jsonObject.has("birthdate")) {
                     dataBinding.tvDOB.setText(jsonObject.optString("birthdate"));
+                }
+                try {
+                    if(jsonObject.has("photo")) {
+                        byte[] decodedString = Base64.decode(jsonObject.optString("photo"), Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        dataBinding.ivAdharImage.setImageBitmap(decodedByte);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 if (jsonObject.optString("gender").equalsIgnoreCase("M")) {
                     dataBinding.tvGender.setText("Male");
