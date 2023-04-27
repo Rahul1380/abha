@@ -62,6 +62,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ABHARepo.abhaListener.onSuccess(finalJSON);
                 ABHARepo.closeABHA();
+                finish();
             }
         });
     }
