@@ -134,6 +134,7 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
                         JSONObject jsonObject1 = new JSONObject(response);
                         if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
                             JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(),PreferenceUtil.XUSERTOKEN,jsonObject2.optString("token"));
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
                             Intent intent = new Intent(getApplicationContext(), AbhaSuccessActivity.class);
                             startActivity(intent);

@@ -40,7 +40,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(PreferenceUtil.getStringPrefs(this, PreferenceUtil.ABHADATA, ""));
                 finalJSON = jsonObject;
-                profileToken = jsonObject.optString("token");
+                profileToken = PreferenceUtil.getStringPrefs(getApplicationContext(), PreferenceUtil.XUSERTOKEN, "");
                 getABHACard();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -75,8 +75,8 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                             String image = jsonObject1.optString("result");
                             byte[] responseBody = Base64.decode(image, Base64.DEFAULT);
 
-                            finalJSON.put("cardImage",image);
-                          //  byte[] responseBody = image.getBytes();
+                            finalJSON.put("cardImage", image);
+                            //  byte[] responseBody = image.getBytes();
                             Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
                             dataBinding.ivCard.setImageBitmap(bitmap);
                         } else

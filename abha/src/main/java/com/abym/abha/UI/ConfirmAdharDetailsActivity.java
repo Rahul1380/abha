@@ -75,6 +75,7 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
                 if (getIntent().hasExtra("new")) {
                     if (getIntent().getStringExtra("new").equalsIgnoreCase("false")) {
                         profileToken = jsonObject.optJSONObject("jwtResponse").optString("token");
+                        PreferenceUtil.setStringPrefs(getApplicationContext(),PreferenceUtil.XUSERTOKEN,profileToken);
                     }
                 }
             } catch (Exception e) {
