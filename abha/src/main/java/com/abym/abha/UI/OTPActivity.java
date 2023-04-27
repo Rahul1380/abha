@@ -121,7 +121,6 @@ public class OTPActivity extends AppCompatActivity {
         return false;
     }
 
-
     public void verifyAdharOTP() {
         try {
             String otp = binding.otpView.getText().toString();

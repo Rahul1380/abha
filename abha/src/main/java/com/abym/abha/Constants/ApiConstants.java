@@ -2,14 +2,14 @@ package com.abym.abha.Constants;
 
 public interface ApiConstants {
 
-    public String BASE_URL_DEV = "https://abym.in";
+    public String BASE_URL_DEV = "http://192.168.0.134:8094";
     public String BASE_URL_LIVE = "https://healthid.abdm.gov.in";
 
     public String BASEURL_DEV_ABDM = "https://dev.abdm.gov.in";
     public String BASEURL_LIVE_ABDM = "https://live.abdm.gov.in";
 
     public String BASEURL_AUTH = "https://live.abdm.gov.in";
-    public String BASEURL_WEBSERVICE = "/dev-url/abha/abdm-abha/api/v1/";
+    public String BASEURL_WEBSERVICE = "/api/v1/";
 
     public String BASEURL = ApiConstants.BASE_URL_DEV + ApiConstants.BASEURL_WEBSERVICE;
     public String SESSIONS_API = "getSession";
