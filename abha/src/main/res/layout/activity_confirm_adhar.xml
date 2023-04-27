@@ -64,7 +64,7 @@
                 android:background="@drawable/outline_bg2"
                 android:padding="15dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivAdharImage"
                     android:layout_width="70dp"
                     android:layout_height="70dp"

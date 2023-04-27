@@ -23,5 +23,5 @@ public interface ApiConstants {
     public String CREATE_ABHA = "create-new-abha";
     public String ABHA_CARD = "account/png/card";
     public String ABHA_QR = "account-get-qr";
-    public String ABHA_PROFILE = "profile";
+    public String ABHA_PROFILE = "account/profile";
 }
