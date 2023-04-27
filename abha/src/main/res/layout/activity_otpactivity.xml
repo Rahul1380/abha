@@ -73,15 +73,14 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tvMobileNum"
+                    android:id="@+id/tvMobileNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/pt_sans_bold"
-                    android:text="@string/number"
+                    android:text=""
                     android:textColor="@color/text_blue"
                     android:textSize="14sp" />
-
             </LinearLayout>
 
             <RelativeLayout
@@ -120,7 +119,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/pt_sans_bold"
-                    android:text="@string/_00_45"
+                    android:text=""
                     android:textColor="@color/text_blue"
                     android:textSize="14sp" />
 

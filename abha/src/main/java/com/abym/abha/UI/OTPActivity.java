@@ -2,7 +2,6 @@ package com.abym.abha.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,19 +10,15 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
-
 import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Constants.AppConstants;
 import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.R;
 import com.abym.abha.Util.PreferenceUtil;
-import com.abym.abha.Util.StringCodec;
 import com.abym.abha.Util.ToastUtil;
 import com.abym.abha.Util.UtilityABHA;
-import com.abym.abha.Wrapper.ABHA;
 import com.abym.abha.Wrapper.ABHARepo;
 import com.abym.abha.databinding.ActivityOtpactivityBinding;
-
 import org.json.JSONObject;
 
 public class OTPActivity extends AppCompatActivity {
@@ -60,6 +55,10 @@ public class OTPActivity extends AppCompatActivity {
     }
 
     private void init() {
+        if(getIntent().hasExtra(AppConstants.MOBILENO))
+        {
+            binding.tvMobileNumber.setText(getIntent().getStringExtra(AppConstants.MOBILENO));
+        }
         OTPTimer();
         String type = getIntent().getStringExtra("type");
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
