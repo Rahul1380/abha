@@ -79,7 +79,7 @@ public class OTPActivity extends AppCompatActivity {
         binding.btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (binding.otpView.getText().toString().length() < 4) {
+                if (binding.otpView.getText().toString().length() < 6) {
                     Toast.makeText(getApplicationContext(), getString(R.string.entervalidotp), Toast.LENGTH_SHORT).show();
                 } else {
                     if (type.equalsIgnoreCase("1"))
@@ -225,7 +225,7 @@ public class OTPActivity extends AppCompatActivity {
                         if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
                             JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
                             String txnId = jsonObject2.optString("txnId");
-                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
                             Intent intent = new Intent(getApplicationContext(), CreateAbhaAddressActivity.class);
                             startActivity(intent);
                             finish();
