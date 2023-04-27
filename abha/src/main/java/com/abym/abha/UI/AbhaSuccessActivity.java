@@ -41,6 +41,11 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(PreferenceUtil.getStringPrefs(this, PreferenceUtil.ABHADATA, ""));
                 finalJSON = jsonObject;
                 profileToken = PreferenceUtil.getStringPrefs(getApplicationContext(), PreferenceUtil.XUSERTOKEN, "");
+                String healthId = finalJSON.optString("healthId") + "";
+                if (healthId.equalsIgnoreCase("") || healthId.equalsIgnoreCase("null")) {
+                    dataBinding.tvABHAAddress.setText(finalJSON.optString("healthIdNumber"));
+                } else
+                    dataBinding.tvABHAAddress.setText(finalJSON.optString("healthId"));
                 getABHACard();
             } catch (Exception e) {
                 e.printStackTrace();
