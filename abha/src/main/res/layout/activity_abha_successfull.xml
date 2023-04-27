@@ -77,9 +77,10 @@
                     android:textSize="14sp"
                     android:fontFamily="@font/pt_sans_regular"/>
                 <TextView
+                    android:id="@+id/tvABHAAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/vashnaviloke_abdm"
+                    android:text=""
                     android:layout_gravity="center"
                     android:textSize="14sp"
                     android:textColor="@color/text_blue"
@@ -110,6 +111,22 @@
             android:textColor="@color/white"
             android:fontFamily="@font/pt_sans_bold"
             android:textSize="14sp"/>
+        <RelativeLayout
+            android:id="@+id/rlProgress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/theme_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>

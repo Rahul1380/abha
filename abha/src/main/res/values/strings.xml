@@ -41,4 +41,5 @@
     <string name="verifyotp">OTP Verification</string>
     <string name="unknownerror">Unknown error occurred.</string>
     <string name="otpresent">OTP resent.</string>
+    <string name="entervalidotp">Enter valid OTP.</string>
 </resources>

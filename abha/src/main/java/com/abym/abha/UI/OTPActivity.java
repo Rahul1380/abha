@@ -2,6 +2,7 @@ package com.abym.abha.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
+
 import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Constants.AppConstants;
 import com.abym.abha.Listener.ResponseListener;
@@ -19,10 +21,12 @@ import com.abym.abha.Util.ToastUtil;
 import com.abym.abha.Util.UtilityABHA;
 import com.abym.abha.Wrapper.ABHARepo;
 import com.abym.abha.databinding.ActivityOtpactivityBinding;
+
 import org.json.JSONObject;
 
 public class OTPActivity extends AppCompatActivity {
     ActivityOtpactivityBinding binding;
+    String type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +59,17 @@ public class OTPActivity extends AppCompatActivity {
     }
 
     private void init() {
-        if(getIntent().hasExtra(AppConstants.MOBILENO))
-        {
-            binding.tvMobileNumber.setText(getIntent().getStringExtra(AppConstants.MOBILENO));
+        if (getIntent().hasExtra(AppConstants.MOBILENO)) {
+            binding.tvMobileNumber.setText("+91 " + getIntent().getStringExtra(AppConstants.MOBILENO));
+        }
+        if (getIntent().hasExtra(AppConstants.TYPE)) {
+            if (getIntent().getStringExtra(AppConstants.TYPE).equalsIgnoreCase("1")) {
+                type = "1";
+            } else {
+                type = "2";
+            }
         }
         OTPTimer();
-        String type = getIntent().getStringExtra("type");
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,14 +80,12 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (binding.otpView.getText().toString().length() < 4) {
-                    Toast.makeText(getApplicationContext(), "OTP required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.entervalidotp), Toast.LENGTH_SHORT).show();
                 } else {
-                    if (type.equalsIgnoreCase("1")) {
+                    if (type.equalsIgnoreCase("1"))
                         verifyAdharOTP();
-                    } else if (type.equalsIgnoreCase("2")) {
-                        Intent intent = new Intent(getApplicationContext(), CreateAbhaAddressActivity.class);
-                        startActivity(intent);
-                    }
+                    else
+                        verifyMobileOTP();
                 }
             }
         });
@@ -125,7 +132,7 @@ public class OTPActivity extends AppCompatActivity {
             String otp = binding.otpView.getText().toString();
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("otp", otp);
-            jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this,PreferenceUtil.TXNID,""));
+            jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.TXNID, ""));
 
             UtilityABHA.abhaAPICall(this, binding.rlProgress, jsonObject, ApiConstants.VERIFY_AADHAR_OTP, new ResponseListener() {
                 @Override
@@ -135,16 +142,20 @@ public class OTPActivity extends AppCompatActivity {
                         if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
                             JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
                             String txnId = jsonObject2.optString("txnId");
-                            if(jsonObject2.optString("new").equalsIgnoreCase("true")) {
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
+                            if (jsonObject2.optString("new").equalsIgnoreCase("true")) {
                                 PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
                                 Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
+                                intent.putExtra("new", "true");
                                 startActivity(intent);
-                                finish();
-                                if (ABHARepo.screen2 != null) {
-                                    ABHARepo.screen2.finish();
-                                }
-                            }else {
-
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
+                                intent.putExtra("new", "false");
+                                startActivity(intent);
+                            }
+                            finish();
+                            if (ABHARepo.screen2 != null) {
+                                ABHARepo.screen2.finish();
                             }
                         } else
                             ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
@@ -168,7 +179,6 @@ public class OTPActivity extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.TXNID, ""));
-            jsonObject.put("token", PreferenceUtil.getStringPrefs(this, PreferenceUtil.HEALTH_ACCESSTOKEN, ""));
 
             UtilityABHA.abhaAPICall(this, binding.rlProgress, jsonObject, ApiConstants.RESEND_AADHAR_OTP, new ResponseListener() {
                 @Override
@@ -180,6 +190,7 @@ public class OTPActivity extends AppCompatActivity {
                             String txnId = jsonObject2.optString("txnId");
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
                             ToastUtil.showToastLong(getApplicationContext(), getString(R.string.otpresent));
+                            OTPTimer();
                         } else
                             ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
                     } catch (Exception e) {
@@ -198,5 +209,45 @@ public class OTPActivity extends AppCompatActivity {
         }
     }
 
+    public void verifyMobileOTP() {
+        try {
+            String otp = binding.otpView.getText().toString();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("mobile", getIntent().getStringExtra(AppConstants.MOBILENO));
+            jsonObject.put("otp", otp);
+            jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.TXNID, ""));
+
+            UtilityABHA.abhaAPICall(this, binding.rlProgress, jsonObject, ApiConstants.VERIFY_MOBILE_OTP, new ResponseListener() {
+                @Override
+                public void onSuccess(String response) {
+                    try {
+                        JSONObject jsonObject1 = new JSONObject(response);
+                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            String txnId = jsonObject2.optString("txnId");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
+                            Intent intent = new Intent(getApplicationContext(), CreateAbhaAddressActivity.class);
+                            startActivity(intent);
+                            finish();
+                            if (ABHARepo.screen4 != null) {
+                                ABHARepo.screen4.finish();
+                            }
+                        } else
+                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(String response) {
+                    ABHARepo.abhaListener.onFailure(response);
+                    ABHARepo.closeABHA();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

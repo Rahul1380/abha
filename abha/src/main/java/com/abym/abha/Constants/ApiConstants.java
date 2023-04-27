@@ -15,13 +15,13 @@ public interface ApiConstants {
     public String SESSIONS_API = "getSession";
     public String ENCRYPT_CERTIFICATE = "encryptionCert";
     public String GENERATE_AADHAR_OTP = "send-aadhar-otp";
-    public String RESEND_AADHAR_OTP = "registrationAadhaarResendAadhaarOtp";
+    public String RESEND_AADHAR_OTP = "resend-aadhar-otp";
     public String VERIFY_AADHAR_OTP = "verify-aadhar-otp";
     public String MOBILE_OTP = "send-mobile-otp";
     public String VERIFY_MOBILE_OTP = "verify-mobile-otp";
     public String CHECK_PHR_AVAIL = "check-healthid";
-    public String LINK_PHR = "registrationPhrAddressId";
     public String CREATE_ABHA = "create-new-abha";
     public String ABHA_CARD = "account-get-card";
     public String ABHA_QR = "account-get-qr";
+    public String ABHA_PROFILE = "profile";
 }

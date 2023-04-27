@@ -10,10 +10,17 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 
+import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Constants.AppConstants;
+import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.R;
 import com.abym.abha.Util.PreferenceUtil;
+import com.abym.abha.Util.ToastUtil;
+import com.abym.abha.Util.UtilityABHA;
+import com.abym.abha.Wrapper.ABHARepo;
 import com.abym.abha.databinding.ActivityCreateAbhaAddressBinding;
+
+import org.json.JSONObject;
 
 public class CreateAbhaAddressActivity extends AppCompatActivity {
     ActivityCreateAbhaAddressBinding dataBinding;
@@ -26,9 +33,9 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
     }
 
     private void init() {
-        if(PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
+        if (PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
             dataBinding.tvPostfix.setText("@sbx");
-        }else if (PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
+        } else if (PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
             dataBinding.tvPostfix.setText("@abdm");
         }
 
@@ -40,7 +47,9 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkEmpty();
+                if (s.length() >= 3) {
+                    checkABHAAddress();
+                } else checkEmpty(1);
             }
 
             @Override
@@ -57,15 +66,14 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
         dataBinding.btnCreateId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AbhaSuccessActivity.class);
-                startActivity(intent);
+                createABHAAddress();
             }
         });
     }
 
 
-    public boolean checkEmpty() {
-        if (TextUtils.isEmpty(dataBinding.etAbhaAddress.getText().toString())) {
+    public boolean checkEmpty(int flag) {
+        if (flag == 1) {
             dataBinding.btnCreateId.setBackgroundResource(R.drawable.btn_gray_bg2);
             dataBinding.btnCreateId.setTextColor(getResources().getColor(R.color.black));
             dataBinding.btnCreateId.setEnabled(false);
@@ -75,5 +83,76 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
             dataBinding.btnCreateId.setEnabled(true);
         }
         return false;
+    }
+
+
+    public void checkABHAAddress() {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("healthId", dataBinding.etAbhaAddress.getText().toString());
+
+            UtilityABHA.abhaAPICall(this, null, jsonObject, ApiConstants.CHECK_PHR_AVAIL, new ResponseListener() {
+                @Override
+                public void onSuccess(String response) {
+                    try {
+                        JSONObject jsonObject1 = new JSONObject(response);
+                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            if (jsonObject2.optString("status").equalsIgnoreCase("false")) {
+                                checkEmpty(2);
+                            } else {
+                                checkEmpty(1);
+                            }
+                        } else
+                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(String response) {
+                    ABHARepo.abhaListener.onFailure(response);
+                    ABHARepo.closeABHA();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createABHAAddress() {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("healthId", dataBinding.etAbhaAddress.getText().toString());
+            jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.TXNID, ""));
+
+            UtilityABHA.abhaAPICall(this, null, jsonObject, ApiConstants.CREATE_ABHA, new ResponseListener() {
+                @Override
+                public void onSuccess(String response) {
+                    try {
+                        JSONObject jsonObject1 = new JSONObject(response);
+                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
+                            Intent intent = new Intent(getApplicationContext(), AbhaSuccessActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else
+                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(String response) {
+                    ABHARepo.abhaListener.onFailure(response);
+                    ABHARepo.closeABHA();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
