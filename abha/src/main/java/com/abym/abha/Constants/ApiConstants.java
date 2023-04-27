@@ -9,7 +9,7 @@ public interface ApiConstants {
     public String BASEURL_LIVE_ABDM = "https://live.abdm.gov.in";
 
     public String BASEURL_AUTH = "https://live.abdm.gov.in";
-    public String BASEURL_WEBSERVICE = "/api/v1/";
+    public String BASEURL_WEBSERVICE = "/api/v1/abha/";
 
     public String BASEURL = ApiConstants.BASE_URL_DEV + ApiConstants.BASEURL_WEBSERVICE;
     public String SESSIONS_API = "getSession";
