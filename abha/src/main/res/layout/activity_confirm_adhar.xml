@@ -124,7 +124,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:fontFamily="@font/pt_sans_regular"
-                            android:text="@string/_09_12_1996"
+                            android:text=""
                             android:textColor="@color/black"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -149,7 +149,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:fontFamily="@font/pt_sans_regular"
-                            android:text="@string/female"
+                            android:text=""
                             android:textColor="@color/black"
                             android:textSize="14sp" />
                     </LinearLayout>

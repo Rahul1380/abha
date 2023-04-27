@@ -34,16 +34,25 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(PreferenceUtil.getStringPrefs(this, PreferenceUtil.ABHADATA, ""));
                 dataBinding.tvName.setText(jsonObject.optString("name"));
-                String date = jsonObject.optString("dayOfBirth");
-                String month = jsonObject.optString("monthOfBirth");
-                String year = jsonObject.optString("yearOfBirth");
-                if (Integer.parseInt(date) < 10) {
-                    date = "0" + date;
+                try {
+                    if (jsonObject.has("dayOfBirth")) {
+                        String date = jsonObject.optString("dayOfBirth");
+                        String month = jsonObject.optString("monthOfBirth");
+                        String year = jsonObject.optString("yearOfBirth");
+                        if (Integer.parseInt(date) < 10) {
+                            date = "0" + date;
+                        }
+                        if (Integer.parseInt(month) < 10) {
+                            month = "0" + month;
+                        }
+                        dataBinding.tvDOB.setText(date + "-" + month + "-" + year);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                if (Integer.parseInt(month) < 10) {
-                    month = "0" + month;
+                if (jsonObject.has("birthdate")) {
+                    dataBinding.tvDOB.setText(jsonObject.optString("birthdate"));
                 }
-                dataBinding.tvDOB.setText(date + "-" + month + "-" + year);
                 if (jsonObject.optString("gender").equalsIgnoreCase("M")) {
                     dataBinding.tvGender.setText("Male");
                 } else if (jsonObject.optString("gender").equalsIgnoreCase("F")) {
