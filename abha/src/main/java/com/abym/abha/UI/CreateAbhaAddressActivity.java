@@ -125,40 +125,6 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
         }
     }
 
-    public boolean checkABHAAddressforSuggestion(String phr) {
-        final boolean[] isAvailable = {false};
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("healthId", phr);
-
-            UtilityABHA.abhaAPICall(this, null, jsonObject, ApiConstants.CHECK_PHR_AVAIL, new ResponseListener() {
-                @Override
-                public void onSuccess(String response) {
-                    try {
-                        JSONObject jsonObject1 = new JSONObject(response);
-                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
-                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                            if (jsonObject2.optString("status").equalsIgnoreCase("false")) {
-                                isAvailable[0] = true;
-                            }
-                        } else
-                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-                @Override
-                public void onFailure(String response) {
-                    ToastUtil.showToastLong(getApplicationContext(), response);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return isAvailable[0];
-    }
 
     public void createABHAAddress() {
         try {
@@ -226,88 +192,21 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
                     name = names[0];
                 }
                 if (getIntent().hasExtra(AppConstants.MOBILENO)) {
-                    String phr1 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(8);
-                    boolean isPHRadded = false;
-                    if (checkABHAAddressforSuggestion(phr1)) {
-                        isPHRadded = true;
-                        addSuggestView(phr1);
-                    }
-                    if (!isPHRadded) {
-                        String phr2 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(7);
-                        if (checkABHAAddressforSuggestion(phr2)) {
-                            isPHRadded = true;
-                            addSuggestView(phr2);
-                        }
-                    }
-                    if (!isPHRadded) {
-                        String phr3 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(6);
-                        if (checkABHAAddressforSuggestion(phr3)) {
-                            isPHRadded = true;
-                            addSuggestView(phr3);
-                        }
-                    }
+                    String phr1 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(7);
+                    addSuggestView(phr1);
+                    phr1 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(6);
+                    addSuggestView(phr1);
                 }
                 try {
                     if (jsonObject.has("dayOfBirth")) {
-                        boolean isPHRadded = false;
                         String year = jsonObject.optString("yearOfBirth");
-                        String date = jsonObject.optString("dayOfBirth");
-                        String month = jsonObject.optString("monthOfBirth");
-                        if (Integer.parseInt(date) < 10) {
-                            date = "0" + date;
-                        }
-                        if (Integer.parseInt(month) < 10) {
-                            month = "0" + month;
-                        }
                         String phr1 = name + year;
-                        if (checkABHAAddressforSuggestion(phr1)) {
-                            isPHRadded = true;
-                            addSuggestView(phr1);
-                        }
-                        if (!isPHRadded) {
-                            String phr2 = name + date;
-                            if (checkABHAAddressforSuggestion(phr2)) {
-                                isPHRadded = true;
-                                addSuggestView(phr2);
-                            }
-                        }
-                        if (!isPHRadded) {
-                            String phr3 = name + month;
-                            if (checkABHAAddressforSuggestion(phr3)) {
-                                isPHRadded = true;
-                                addSuggestView(phr3);
-                            }
-                        }
+                        addSuggestView(phr1);
                     } else if (jsonObject.has("birthdate")) {
-                        boolean isPHRadded = false;
                         String year = jsonObject.optString("birthdate").substring(6, 10);
-                        String date = jsonObject.optString("birthdate").substring(0, 2);
-                        String month = jsonObject.optString("birthdate").substring(3, 5);
-                        if (Integer.parseInt(date) < 10) {
-                            date = "0" + date;
-                        }
-                        if (Integer.parseInt(month) < 10) {
-                            month = "0" + month;
-                        }
                         String phr1 = name + year;
-                        if (checkABHAAddressforSuggestion(phr1)) {
-                            isPHRadded = true;
-                            addSuggestView(phr1);
-                        }
-                        if (!isPHRadded) {
-                            String phr2 = name + date;
-                            if (checkABHAAddressforSuggestion(phr2)) {
-                                isPHRadded = true;
-                                addSuggestView(phr2);
-                            }
-                        }
-                        if (!isPHRadded) {
-                            String phr3 = name + month;
-                            if (checkABHAAddressforSuggestion(phr3)) {
-                                isPHRadded = true;
-                                addSuggestView(phr3);
-                            }
-                        }
+                        addSuggestView(phr1);
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

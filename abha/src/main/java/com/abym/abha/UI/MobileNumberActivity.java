@@ -102,6 +102,7 @@ public class MobileNumberActivity extends AppCompatActivity {
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
                             if(mobileLinked.equalsIgnoreCase("true")) {
                                 Intent intent = new Intent(getApplicationContext(), CreateAbhaAddressActivity.class);
+                                intent.putExtra(AppConstants.MOBILENO,dataBinding.etMobileNo.getText().toString());
                                 startActivity(intent);
                             }else {
                                 Intent intent = new Intent(getApplicationContext(), OTPActivity.class);
