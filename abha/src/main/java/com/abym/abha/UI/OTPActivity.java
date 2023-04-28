@@ -144,7 +144,7 @@ public class OTPActivity extends AppCompatActivity {
                             String txnId = jsonObject2.optString("txnId");
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
                             Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
-                            intent.putExtra(AppConstants.AADHAAR,getIntent().getStringExtra(AppConstants.AADHAAR));
+                            intent.putExtra(AppConstants.AADHAAR, getIntent().getStringExtra(AppConstants.AADHAAR));
                             if (jsonObject2.optString("new").equalsIgnoreCase("true")) {
                                 PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
                                 intent.putExtra("new", "true");
@@ -166,7 +166,7 @@ public class OTPActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String response) {
-                    ToastUtil.showToastLong(getApplicationContext(),response);
+                    ToastUtil.showToastLong(getApplicationContext(), response);
                 }
             });
         } catch (Exception e) {
@@ -199,7 +199,7 @@ public class OTPActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String response) {
-                    ToastUtil.showToastLong(getApplicationContext(),response);
+                    ToastUtil.showToastLong(getApplicationContext(), response);
                 }
             });
         } catch (Exception e) {
@@ -225,6 +225,7 @@ public class OTPActivity extends AppCompatActivity {
                             String txnId = jsonObject2.optString("txnId");
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
                             Intent intent = new Intent(getApplicationContext(), CreateAbhaAddressActivity.class);
+                            intent.putExtra(AppConstants.MOBILENO, getIntent().getStringExtra(AppConstants.MOBILENO));
                             startActivity(intent);
                             finish();
                             if (ABHARepo.screen4 != null) {
@@ -239,7 +240,7 @@ public class OTPActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String response) {
-                    ToastUtil.showToastLong(getApplicationContext(),response);
+                    ToastUtil.showToastLong(getApplicationContext(), response);
                 }
             });
         } catch (Exception e) {

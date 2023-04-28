@@ -37,6 +37,7 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
     }
 
     private void init() {
+        generateSuggestions();
         if (PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
             dataBinding.tvPostfix.setText("@sbx");
         } else if (PreferenceUtil.getStringPrefs(this, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
@@ -116,12 +117,47 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String response) {
-                    ToastUtil.showToastLong(getApplicationContext(),response);
+                    ToastUtil.showToastLong(getApplicationContext(), response);
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkABHAAddressforSuggestion(String phr) {
+        final boolean[] isAvailable = {false};
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("healthId", phr);
+
+            UtilityABHA.abhaAPICall(this, null, jsonObject, ApiConstants.CHECK_PHR_AVAIL, new ResponseListener() {
+                @Override
+                public void onSuccess(String response) {
+                    try {
+                        JSONObject jsonObject1 = new JSONObject(response);
+                        if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
+                            if (jsonObject2.optString("status").equalsIgnoreCase("false")) {
+                                isAvailable[0] = true;
+                            }
+                        } else
+                            ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(String response) {
+                    ToastUtil.showToastLong(getApplicationContext(), response);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isAvailable[0];
     }
 
     public void createABHAAddress() {
@@ -156,7 +192,7 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String response) {
-                    ToastUtil.showToastLong(getApplicationContext(),response);
+                    ToastUtil.showToastLong(getApplicationContext(), response);
                 }
             });
         } catch (Exception e) {
@@ -164,12 +200,12 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
         }
     }
 
-    public void addSuggestView(String phr)
-    {
-        View view= LayoutInflater.from(this).inflate(R.layout.layout_phr,null);
-        TextView tvPHR=view.findViewById(R.id.tvPHR);
-        RelativeLayout rlPHR=view.findViewById(R.id.rlPHR);
+    public void addSuggestView(String phr) {
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_phr, null);
+        TextView tvPHR = view.findViewById(R.id.tvPHR);
+        RelativeLayout rlPHR = view.findViewById(R.id.rlPHR);
 
+        tvPHR.setText(phr);
         rlPHR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,5 +213,109 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
             }
         });
         dataBinding.flexLayout.addView(view);
+    }
+
+
+    public void generateSuggestions() {
+        if (!PreferenceUtil.getStringPrefs(this, PreferenceUtil.ABHADATA, "").equalsIgnoreCase("")) {
+            try {
+                JSONObject jsonObject = new JSONObject(PreferenceUtil.getStringPrefs(this, PreferenceUtil.ABHADATA, ""));
+                String name = jsonObject.optString("name");
+                if (name.contains(" ")) {
+                    String[] names = name.split(" ");
+                    name = names[0];
+                }
+                if (getIntent().hasExtra(AppConstants.MOBILENO)) {
+                    String phr1 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(8);
+                    boolean isPHRadded = false;
+                    if (checkABHAAddressforSuggestion(phr1)) {
+                        isPHRadded = true;
+                        addSuggestView(phr1);
+                    }
+                    if (!isPHRadded) {
+                        String phr2 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(7);
+                        if (checkABHAAddressforSuggestion(phr2)) {
+                            isPHRadded = true;
+                            addSuggestView(phr2);
+                        }
+                    }
+                    if (!isPHRadded) {
+                        String phr3 = name + getIntent().getStringExtra(AppConstants.MOBILENO).substring(6);
+                        if (checkABHAAddressforSuggestion(phr3)) {
+                            isPHRadded = true;
+                            addSuggestView(phr3);
+                        }
+                    }
+                }
+                try {
+                    if (jsonObject.has("dayOfBirth")) {
+                        boolean isPHRadded = false;
+                        String year = jsonObject.optString("yearOfBirth");
+                        String date = jsonObject.optString("dayOfBirth");
+                        String month = jsonObject.optString("monthOfBirth");
+                        if (Integer.parseInt(date) < 10) {
+                            date = "0" + date;
+                        }
+                        if (Integer.parseInt(month) < 10) {
+                            month = "0" + month;
+                        }
+                        String phr1 = name + year;
+                        if (checkABHAAddressforSuggestion(phr1)) {
+                            isPHRadded = true;
+                            addSuggestView(phr1);
+                        }
+                        if (!isPHRadded) {
+                            String phr2 = name + date;
+                            if (checkABHAAddressforSuggestion(phr2)) {
+                                isPHRadded = true;
+                                addSuggestView(phr2);
+                            }
+                        }
+                        if (!isPHRadded) {
+                            String phr3 = name + month;
+                            if (checkABHAAddressforSuggestion(phr3)) {
+                                isPHRadded = true;
+                                addSuggestView(phr3);
+                            }
+                        }
+                    } else if (jsonObject.has("birthdate")) {
+                        boolean isPHRadded = false;
+                        String year = jsonObject.optString("birthdate").substring(6, 10);
+                        String date = jsonObject.optString("birthdate").substring(0, 2);
+                        String month = jsonObject.optString("birthdate").substring(3, 5);
+                        if (Integer.parseInt(date) < 10) {
+                            date = "0" + date;
+                        }
+                        if (Integer.parseInt(month) < 10) {
+                            month = "0" + month;
+                        }
+                        String phr1 = name + year;
+                        if (checkABHAAddressforSuggestion(phr1)) {
+                            isPHRadded = true;
+                            addSuggestView(phr1);
+                        }
+                        if (!isPHRadded) {
+                            String phr2 = name + date;
+                            if (checkABHAAddressforSuggestion(phr2)) {
+                                isPHRadded = true;
+                                addSuggestView(phr2);
+                            }
+                        }
+                        if (!isPHRadded) {
+                            String phr3 = name + month;
+                            if (checkABHAAddressforSuggestion(phr3)) {
+                                isPHRadded = true;
+                                addSuggestView(phr3);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
