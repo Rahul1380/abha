@@ -35,6 +35,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_abha_successfull);
+        ((GifDrawable) dataBinding.gifImage.getDrawable()).setLoopCount(1);
         init();
     }
 
@@ -86,7 +87,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                         Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
                         dataBinding.ivCard.setImageBitmap(bitmap);
 
-                        ((GifDrawable) dataBinding.gifImage.getBackground()).stop();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -94,7 +95,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String response) {
-                    ToastUtil.showToastLong(getApplicationContext(),response);
+                    ToastUtil.showToastLong(getApplicationContext(), response);
                 }
             });
         } catch (Exception e) {
