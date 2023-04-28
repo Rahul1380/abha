@@ -100,7 +100,6 @@
                     android:focusable="true"
                     android:gravity="center"
                     android:inputType="number"
-                    android:itemBackground="@drawable/et_outline_bg"
                     android:textColor="@color/black"
                     app:itemCount="6"
                     app:itemHeight="50dp"
