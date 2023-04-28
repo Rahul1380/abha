@@ -13,6 +13,7 @@ import android.view.View;
 import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.R;
+import com.abym.abha.Util.LogUtil;
 import com.abym.abha.Util.PreferenceUtil;
 import com.abym.abha.Util.ToastUtil;
 import com.abym.abha.Util.UtilityABHA;
@@ -21,6 +22,8 @@ import com.abym.abha.Wrapper.ABHARepo;
 import com.abym.abha.databinding.ActivityAbhaSuccessfullBinding;
 
 import org.json.JSONObject;
+
+import pl.droidsonroids.gif.GifDrawable;
 
 public class AbhaSuccessActivity extends AppCompatActivity {
     ActivityAbhaSuccessfullBinding dataBinding;
@@ -60,6 +63,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
         dataBinding.btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LogUtil.showErrorLog("response#####", finalJSON.toString());
                 ABHARepo.abhaListener.onSuccess(finalJSON);
                 ABHARepo.closeABHA();
                 finish();
@@ -78,9 +82,11 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject1 = new JSONObject(response);
                         byte[] responseBody = Base64.decode(jsonObject1.optString("result"), Base64.DEFAULT);
-                      //  finalJSON.put("cardImage", response);
+                        //  finalJSON.put("cardImage", response);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
                         dataBinding.ivCard.setImageBitmap(bitmap);
+                        GifDrawable gifFromResource = new GifDrawable(getResources(), R.drawable.gif_image_1);
+                        gifFromResource.stop();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
