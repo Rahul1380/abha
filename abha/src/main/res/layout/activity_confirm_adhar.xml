@@ -57,116 +57,135 @@
                 android:textColor="@color/dark_blue"
                 android:textSize="18sp" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/outline_bg2"
-                android:padding="15dp">
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivAdharImage"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/profileicon" />
+                <ImageView
+                    android:id="@+id/ivhead"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/adhar_head" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_toRightOf="@id/ivAdharImage"
-                    android:orientation="vertical">
+                    android:paddingTop="10dp"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/pt_sans_regular"
-                            android:text="@string/name"
-                            android:textColor="#7f7f7f"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tvName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:fontFamily="@font/pt_sans_regular"
-                            android:text=""
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivAdharImage"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/ivhead"
+                        android:src="@drawable/profileicon" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                        android:layout_below="@+id/ivhead"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toRightOf="@id/ivAdharImage"
+                        android:orientation="vertical">
 
-                        <TextView
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/pt_sans_regular"
+                                android:text="@string/name"
+                                android:textColor="#7f7f7f"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/pt_sans_regular"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/pt_sans_regular"
-                            android:text="@string/date_of_birth"
-                            android:textColor="#7f7f7f"
-                            android:textSize="14sp" />
+                            android:layout_marginTop="10dp">
 
-                        <TextView
-                            android:id="@+id/tvDOB"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/pt_sans_regular"
+                                android:text="@string/date_of_birth"
+                                android:textColor="#7f7f7f"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvDOB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/pt_sans_regular"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:fontFamily="@font/pt_sans_regular"
-                            android:text=""
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/pt_sans_regular"
+                                android:text="@string/gender"
+                                android:textColor="#7f7f7f"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvGender"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/pt_sans_regular"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvAdhar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/pt_sans_bold"
+                            android:text="@string/adhar_no"
                             android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:textSize="18sp" />
+
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/pt_sans_regular"
-                            android:text="@string/gender"
-                            android:textColor="#7f7f7f"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tvGender"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:fontFamily="@font/pt_sans_regular"
-                            android:text=""
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/pt_sans_bold"
-                        android:text="@string/adhar_no"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
                 </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -193,6 +212,7 @@
             android:text="@string/proceed"
             android:textColor="@color/white"
             android:textSize="14sp" />
+
         <RelativeLayout
             android:id="@+id/rlProgress"
             android:layout_width="match_parent"
@@ -202,12 +222,12 @@
 
             <ProgressBar
                 android:id="@+id/progress"
-                android:indeterminate="true"
-                android:indeterminateTintMode="src_atop"
-                android:indeterminateTint="@color/theme_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/theme_color"
+                android:indeterminateTintMode="src_atop" />
         </RelativeLayout>
 
     </RelativeLayout>

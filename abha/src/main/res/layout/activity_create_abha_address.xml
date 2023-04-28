@@ -82,27 +82,26 @@
                     android:fontFamily="@font/pt_sans_regular"
                     android:text="@string/abdm" />
             </RelativeLayout>
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:layout_below="@+id/ll1"
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
-                <com.google.android.flexbox.FlexboxLayout
-                    android:layout_width="match_parent"
+                app:showDivider="middle"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:dividerDrawable="@drawable/divider"
+                app:flexWrap="wrap">
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:flexWrap="wrap">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/suggested"
-                        android:fontFamily="@font/pt_sans_regular"
-                        android:textSize="14sp"
-                        android:paddingRight="15dp"/>
-
-                </com.google.android.flexbox.FlexboxLayout>
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+                    android:text="@string/suggested"
+                    android:fontFamily="@font/pt_sans_regular"
+                    android:textSize="14sp"
+                    android:paddingRight="15dp"/>
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:id="@+id/btnCreateId"
                 android:layout_width="match_parent"

@@ -150,6 +150,7 @@ public class AdharCardVerifyActivity extends AppCompatActivity {
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
                             Intent intent = new Intent(getApplicationContext(), OTPActivity.class);
                             intent.putExtra(AppConstants.MOBILENO, mobileNumber);
+                            intent.putExtra(AppConstants.AADHAAR, dataBinding.etAdhar3.getText().toString());
                             intent.putExtra(AppConstants.TYPE, "1");
                             startActivity(intent);
                         } else

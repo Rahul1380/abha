@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Constants.AppConstants;
@@ -129,8 +132,8 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
             jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.TXNID, ""));
             jsonObject.put("referenceId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_ID, ""));
             jsonObject.put("referenceType", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_TYPE, ""));
-            jsonObject.put("platform",AppConstants.MOBILE);
-            jsonObject.put("platformType",AppConstants.ANDROID);
+            jsonObject.put("platform", AppConstants.MOBILE);
+            jsonObject.put("platformType", AppConstants.ANDROID);
             jsonObject.put("version", DeviceInfoUtil.getAppVersion(this));
 
             UtilityABHA.abhaAPICall(this, null, jsonObject, ApiConstants.CREATE_ABHA, new ResponseListener() {
@@ -140,7 +143,7 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
                         JSONObject jsonObject1 = new JSONObject(response);
                         if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
                             JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
-                            PreferenceUtil.setStringPrefs(getApplicationContext(),PreferenceUtil.XUSERTOKEN,jsonObject2.optString("token"));
+                            PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.XUSERTOKEN, jsonObject2.optString("token"));
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
                             Intent intent = new Intent(getApplicationContext(), AbhaSuccessActivity.class);
                             startActivity(intent);
@@ -161,5 +164,20 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void addSuggestView(String phr)
+    {
+        View view= LayoutInflater.from(this).inflate(R.layout.layout_phr,null);
+        TextView tvPHR=view.findViewById(R.id.tvPHR);
+        RelativeLayout rlPHR=view.findViewById(R.id.rlPHR);
+
+        rlPHR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dataBinding.etAbhaAddress.setText(phr);
+            }
+        });
+        dataBinding.flexLayout.addView(view);
     }
 }

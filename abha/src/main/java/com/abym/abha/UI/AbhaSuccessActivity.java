@@ -85,8 +85,8 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                         //  finalJSON.put("cardImage", response);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
                         dataBinding.ivCard.setImageBitmap(bitmap);
-                        GifDrawable gifFromResource = new GifDrawable(getResources(), R.drawable.gif_image_1);
-                        gifFromResource.stop();
+
+                        ((GifDrawable) dataBinding.gifImage.getBackground()).stop();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

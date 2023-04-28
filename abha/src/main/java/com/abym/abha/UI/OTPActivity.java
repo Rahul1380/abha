@@ -143,13 +143,13 @@ public class OTPActivity extends AppCompatActivity {
                             JSONObject jsonObject2 = jsonObject1.optJSONObject("result");
                             String txnId = jsonObject2.optString("txnId");
                             PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.ABHADATA, jsonObject2.toString());
+                            Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
+                            intent.putExtra(AppConstants.AADHAAR,getIntent().getStringExtra(AppConstants.AADHAAR));
                             if (jsonObject2.optString("new").equalsIgnoreCase("true")) {
                                 PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.TXNID, txnId);
-                                Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
                                 intent.putExtra("new", "true");
                                 startActivity(intent);
                             } else {
-                                Intent intent = new Intent(getApplicationContext(), ConfirmAdharDetailsActivity.class);
                                 intent.putExtra("new", "false");
                                 startActivity(intent);
                             }

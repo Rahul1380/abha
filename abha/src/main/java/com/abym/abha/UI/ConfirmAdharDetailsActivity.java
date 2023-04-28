@@ -39,6 +39,7 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(PreferenceUtil.getStringPrefs(this, PreferenceUtil.ABHADATA, ""));
                 dataBinding.tvName.setText(jsonObject.optString("name"));
+                dataBinding.tvAdhar.setText("xxxx xxxx " + getIntent().getStringExtra(AppConstants.AADHAAR));
                 try {
                     if (jsonObject.has("dayOfBirth")) {
                         String date = jsonObject.optString("dayOfBirth");
@@ -59,7 +60,7 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
                     dataBinding.tvDOB.setText(jsonObject.optString("birthdate"));
                 }
                 try {
-                    if(jsonObject.has("photo")) {
+                    if (jsonObject.has("photo")) {
                         byte[] decodedString = Base64.decode(jsonObject.optString("photo"), Base64.DEFAULT);
                         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                         dataBinding.ivAdharImage.setImageBitmap(decodedByte);
@@ -77,7 +78,7 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
                 if (getIntent().hasExtra("new")) {
                     if (getIntent().getStringExtra("new").equalsIgnoreCase("false")) {
                         profileToken = jsonObject.optJSONObject("jwtResponse").optString("token");
-                        PreferenceUtil.setStringPrefs(getApplicationContext(),PreferenceUtil.XUSERTOKEN,profileToken);
+                        PreferenceUtil.setStringPrefs(getApplicationContext(), PreferenceUtil.XUSERTOKEN, profileToken);
                     }
                 }
             } catch (Exception e) {
@@ -114,7 +115,7 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
             jsonObject.put("referenceId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_ID, ""));
             jsonObject.put("referenceType", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_TYPE, ""));
             jsonObject.put("platform", AppConstants.MOBILE);
-            jsonObject.put("platformType",AppConstants.ANDROID);
+            jsonObject.put("platformType", AppConstants.ANDROID);
             jsonObject.put("version", DeviceInfoUtil.getAppVersion(this));
             UtilityABHA.abhaAPICall(this, dataBinding.rlProgress, jsonObject, ApiConstants.ABHA_PROFILE, new ResponseListener() {
                 @Override
