@@ -31,16 +31,14 @@ public class ABHARepo implements ABHA {
     }
 
     @Override
-    public boolean init(Context context, String mode, String clientId, String clientSecret) {
+    public boolean init(Context context, String mode, String referenceId,String referenceType) {
         PreferenceUtil.clearpref(context);
-        AppConstants.CLIENT_ID = clientId;
-        AppConstants.CLIENT_SECRET = clientSecret;
         if ((mode.equalsIgnoreCase(AppConstants.UAT) || mode.equalsIgnoreCase(AppConstants.PROD)) &&
-                !TextUtils.isEmpty(clientId) && !TextUtils.isEmpty(clientSecret)) {
+                !TextUtils.isEmpty(referenceId) && !TextUtils.isEmpty(referenceId)) {
             PreferenceUtil.clearpref(context);
             PreferenceUtil.setStringPrefs(context, PreferenceUtil.ENVIRONMENT, mode);
-            PreferenceUtil.setStringPrefs(context, PreferenceUtil.CLIENT_ID, clientId);
-            PreferenceUtil.setStringPrefs(context, PreferenceUtil.CLIENT_SECRET, clientSecret);
+            PreferenceUtil.setStringPrefs(context, PreferenceUtil.REFERENCE_ID, referenceId);
+            PreferenceUtil.setStringPrefs(context, PreferenceUtil.REFERENCE_TYPE, referenceType);
             return true;
         }
         return false;

@@ -11,8 +11,10 @@ import android.util.Base64;
 import android.view.View;
 
 import com.abym.abha.Constants.ApiConstants;
+import com.abym.abha.Constants.AppConstants;
 import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.R;
+import com.abym.abha.Util.DeviceInfoUtil;
 import com.abym.abha.Util.PreferenceUtil;
 import com.abym.abha.Util.ToastUtil;
 import com.abym.abha.Util.UtilityABHA;
@@ -109,7 +111,11 @@ public class ConfirmAdharDetailsActivity extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("profileToken", profileToken);
-
+            jsonObject.put("referenceId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_ID, ""));
+            jsonObject.put("referenceType", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_TYPE, ""));
+            jsonObject.put("platform", AppConstants.MOBILE);
+            jsonObject.put("platformType",AppConstants.ANDROID);
+            jsonObject.put("version", DeviceInfoUtil.getAppVersion(this));
             UtilityABHA.abhaAPICall(this, dataBinding.rlProgress, jsonObject, ApiConstants.ABHA_PROFILE, new ResponseListener() {
                 @Override
                 public void onSuccess(String response) {

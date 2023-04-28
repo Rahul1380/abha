@@ -30,6 +30,8 @@ public class PreferenceUtil {
     public static String CLIENT_ID = "clientId";
     public static String CLIENT_SECRET = "clientSecret";
     public static String ABHADATA = "abhaData";
+    public static String REFERENCE_ID = "referenceId";
+    public static String REFERENCE_TYPE = "referenceType";
 
     private static SharedPreferences getSharedPrefs(Context context) {
         return context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);

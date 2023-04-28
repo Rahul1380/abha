@@ -76,16 +76,10 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(String response) {
                     try {
-                     //   JSONObject jsonObject1 = new JSONObject(response);
-                     //   if (jsonObject1.optString("status").equalsIgnoreCase("true")) {
-                        //    String image = jsonObject1.optString("result");
-                           // byte[] responseBody = Base64.decode(image, Base64.DEFAULT);
-                        //    finalJSON.put("cardImage", response);
-                            byte[] responseBody = response.getBytes();
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
-                            dataBinding.ivCard.setImageBitmap(bitmap);
-                     ///   } else
-                     //       ToastUtil.showToastLong(getApplicationContext(), jsonObject1.optString("message"));
+                        byte[] responseBody = Base64.decode(response, Base64.DEFAULT);
+                        finalJSON.put("cardImage", response);
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
+                        dataBinding.ivCard.setImageBitmap(bitmap);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -101,5 +95,4 @@ public class AbhaSuccessActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

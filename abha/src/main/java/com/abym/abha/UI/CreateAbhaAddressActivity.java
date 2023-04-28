@@ -14,6 +14,7 @@ import com.abym.abha.Constants.ApiConstants;
 import com.abym.abha.Constants.AppConstants;
 import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.R;
+import com.abym.abha.Util.DeviceInfoUtil;
 import com.abym.abha.Util.PreferenceUtil;
 import com.abym.abha.Util.ToastUtil;
 import com.abym.abha.Util.UtilityABHA;
@@ -126,6 +127,11 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("healthId", dataBinding.etAbhaAddress.getText().toString());
             jsonObject.put("txnId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.TXNID, ""));
+            jsonObject.put("referenceId", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_ID, ""));
+            jsonObject.put("referenceType", PreferenceUtil.getStringPrefs(this, PreferenceUtil.REFERENCE_TYPE, ""));
+            jsonObject.put("platform",AppConstants.MOBILE);
+            jsonObject.put("platformType",AppConstants.ANDROID);
+            jsonObject.put("version", DeviceInfoUtil.getAppVersion(this));
 
             UtilityABHA.abhaAPICall(this, null, jsonObject, ApiConstants.CREATE_ABHA, new ResponseListener() {
                 @Override
