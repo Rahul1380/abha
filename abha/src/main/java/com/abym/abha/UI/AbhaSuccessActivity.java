@@ -94,8 +94,7 @@ public class AbhaSuccessActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String response) {
-                    ABHARepo.abhaListener.onFailure(response);
-                    ABHARepo.closeABHA();
+                    ToastUtil.showToastLong(getApplicationContext(),response);
                 }
             });
         } catch (Exception e) {
