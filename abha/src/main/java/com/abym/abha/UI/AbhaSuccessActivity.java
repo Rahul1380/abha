@@ -76,7 +76,8 @@ public class AbhaSuccessActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(String response) {
                     try {
-                        byte[] responseBody = Base64.decode(response, Base64.DEFAULT);
+                        JSONObject jsonObject1 = new JSONObject(response);
+                        byte[] responseBody = Base64.decode(jsonObject1.optString("result"), Base64.DEFAULT);
                         finalJSON.put("cardImage", response);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.length);
                         dataBinding.ivCard.setImageBitmap(bitmap);
