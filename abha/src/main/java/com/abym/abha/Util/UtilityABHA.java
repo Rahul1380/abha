@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.abym.abha.Constants.ApiConstants;
+import com.abym.abha.Constants.AppConstants;
 import com.abym.abha.Listener.ResponseListener;
 import com.abym.abha.Network.ApiClient;
 import com.abym.abha.Network.ApiInterface;
@@ -24,12 +25,18 @@ import retrofit2.Response;
 public class UtilityABHA {
 
     public static void abhaAPICall(Context context, RelativeLayout progressBar, JSONObject jsonObject, String apiUrl, ResponseListener listener) {
+        String BASEURL = "";
+        if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
+            BASEURL = ApiConstants.BASEURL_UAT;
+        } else if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
+            BASEURL = ApiConstants.BASEURL_LIVE;
+        }
         if (NetworkUtil.checkInternetConnection(context)) {
             if (progressBar != null)
                 progressBar.setVisibility(View.VISIBLE);
             ApiInterface apiService = null;
             try {
-                apiService = ApiClient.getApiClient(context, ApiConstants.BASEURL).create(ApiInterface.class);
+                apiService = ApiClient.getApiClient(context, BASEURL).create(ApiInterface.class);
                 RequestBody body =
                         RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
                 Call<ResponseBody> call = apiService.abhaRequest(apiUrl, body);
@@ -85,13 +92,18 @@ public class UtilityABHA {
     }
 
     public static void abhaAPICallwithSessionAuth(Context context, RelativeLayout progressBar, JSONObject jsonObject, String apiUrl, ResponseListener listener) {
+        String BASEURL = "";
+        if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
+            BASEURL = ApiConstants.BASEURL_UAT;
+        } else if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
+            BASEURL = ApiConstants.BASEURL_LIVE;
+        }
         if (NetworkUtil.checkInternetConnection(context)) {
             if (progressBar != null)
                 progressBar.setVisibility(View.VISIBLE);
             ApiInterface apiService = null;
             try {
-                apiService = ApiClient.getApiClient1(context, ApiConstants.BASEURL).create(ApiInterface.class);
-
+                apiService = ApiClient.getApiClient1(context, BASEURL).create(ApiInterface.class);
                 RequestBody body =
                         RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
 
@@ -148,13 +160,18 @@ public class UtilityABHA {
     }
 
     public static void abhaAPIGetCall(Context context, RelativeLayout progressBar, String apiUrl, ResponseListener listener) {
+        String BASEURL = "";
+        if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
+            BASEURL = ApiConstants.BASEURL_UAT;
+        } else if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
+            BASEURL = ApiConstants.BASEURL_LIVE;
+        }
         if (NetworkUtil.checkInternetConnection(context)) {
             if (progressBar != null)
                 progressBar.setVisibility(View.VISIBLE);
             ApiInterface apiService = null;
             try {
-                apiService = ApiClient.getApiClient(context, ApiConstants.BASEURL).create(ApiInterface.class);
-
+                apiService = ApiClient.getApiClient(context, BASEURL).create(ApiInterface.class);
                 Call<ResponseBody> call = apiService.abhaGetRequest(apiUrl);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -205,11 +222,17 @@ public class UtilityABHA {
     }
 
     public static void abhaAPIGetCallwithSessionAuth(Context context, RelativeLayout progressBar, String apiUrl, ResponseListener listener) {
+        String BASEURL = "";
+        if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
+            BASEURL = ApiConstants.BASEURL_UAT;
+        } else if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
+            BASEURL = ApiConstants.BASEURL_LIVE;
+        }
         if (NetworkUtil.checkInternetConnection(context)) {
             if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
             ApiInterface apiService = null;
             try {
-                apiService = ApiClient.getApiClient1(context, ApiConstants.BASEURL).create(ApiInterface.class);
+                apiService = ApiClient.getApiClient1(context, BASEURL).create(ApiInterface.class);
 
                 Call<ResponseBody> call = apiService.abhaGetRequest(apiUrl);
                 call.enqueue(new Callback<ResponseBody>() {
@@ -264,11 +287,17 @@ public class UtilityABHA {
     }
 
     public static void abhaAPIGetCallwithUserAuth(Context context, RelativeLayout progressBar, JSONObject jsonObject, String apiUrl, ResponseListener listener) {
+        String BASEURL = "";
+        if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.UAT)) {
+            BASEURL = ApiConstants.BASEURL_UAT;
+        } else if (PreferenceUtil.getStringPrefs(context, PreferenceUtil.ENVIRONMENT, "").equalsIgnoreCase(AppConstants.PROD)) {
+            BASEURL = ApiConstants.BASEURL_LIVE;
+        }
         if (NetworkUtil.checkInternetConnection(context)) {
             if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
             ApiInterface apiService = null;
             try {
-                apiService = ApiClient.getApiClient2(context, ApiConstants.BASEURL).create(ApiInterface.class);
+                apiService = ApiClient.getApiClient2(context, BASEURL).create(ApiInterface.class);
 
                 RequestBody body =
                         RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
