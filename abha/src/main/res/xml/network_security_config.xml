@@ -9,4 +9,8 @@
         <domain includeSubdomains="true">43.205.177.18
         </domain>
     </domain-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">13.234.94.247
+        </domain>
+    </domain-config>
 </network-security-config>
