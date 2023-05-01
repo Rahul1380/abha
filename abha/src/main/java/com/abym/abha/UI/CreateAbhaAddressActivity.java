@@ -175,7 +175,12 @@ public class CreateAbhaAddressActivity extends AppCompatActivity {
         rlPHR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataBinding.etAbhaAddress.setText(phr);
+                try {
+                    dataBinding.etAbhaAddress.setText(phr);
+                    dataBinding.etAbhaAddress.setSelection(dataBinding.etAbhaAddress.getText().toString().length());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         dataBinding.flexLayout.addView(view);
