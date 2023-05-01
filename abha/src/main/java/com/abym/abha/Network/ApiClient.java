@@ -49,7 +49,8 @@ public class ApiClient {
         public Response intercept(Interceptor.Chain chain) throws IOException {
             return chain.proceed(chain.request().newBuilder().addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json").
-                    addHeader("token", "60f291aa46ea447060f291aa46ea447019d83ba30be508e419d83ba30be508e4").build());
+                  //  addHeader("token", "60f291aa46ea447060f291aa46ea447019d83ba30be508e419d83ba30be508e4").build());
+                    addHeader("token", PreferenceUtil.getStringPrefs(context,PreferenceUtil.CLIENT_TOKEN,"")).build());
         }
     }
 }

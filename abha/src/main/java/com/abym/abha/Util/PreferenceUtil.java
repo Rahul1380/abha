@@ -28,7 +28,7 @@ public class PreferenceUtil {
     public static String AUTHTOKEN = "authtoken";
     public static String IS_VERIFIED = "is_verified";
     public static String CLIENT_ID = "clientId";
-    public static String CLIENT_SECRET = "clientSecret";
+    public static String CLIENT_TOKEN = "clientSecret";
     public static String ABHADATA = "abhaData";
     public static String REFERENCE_ID = "referenceId";
     public static String REFERENCE_TYPE = "referenceType";

@@ -31,11 +31,13 @@ public class ABHARepo implements ABHA {
     }
 
     @Override
-    public boolean init(Context context, String mode, String referenceId,String referenceType) {
+    public boolean init(Context context, String mode,String clientId, String clientToken, String referenceId,String referenceType) {
         PreferenceUtil.clearpref(context);
         if ((mode.equalsIgnoreCase(AppConstants.UAT) || mode.equalsIgnoreCase(AppConstants.PROD)) &&
                 !TextUtils.isEmpty(referenceId) && !TextUtils.isEmpty(referenceId)) {
             PreferenceUtil.clearpref(context);
+            PreferenceUtil.setStringPrefs(context, PreferenceUtil.CLIENT_ID, clientId);
+            PreferenceUtil.setStringPrefs(context, PreferenceUtil.CLIENT_TOKEN, clientToken);
             PreferenceUtil.setStringPrefs(context, PreferenceUtil.ENVIRONMENT, mode);
             PreferenceUtil.setStringPrefs(context, PreferenceUtil.REFERENCE_ID, referenceId);
             PreferenceUtil.setStringPrefs(context, PreferenceUtil.REFERENCE_TYPE, referenceType);
